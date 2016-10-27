@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!--TODO Add android:icon -->
+    <item
+        android:id="@+id/bottom_nav_main_action_1"
+        android:enabled="true"
+        android:title="@string/bottom_nav_title_1"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/bottom_nav_main_action_2"
+        android:enabled="true"
+        android:title="@string/bottom_nav_title_2"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/bottom_nav_main_action_3"
+        android:enabled="true"
+        android:title="@string/bottom_nav_title_3"
+        app:showAsAction="ifRoom" />
+</menu>
