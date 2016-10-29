@@ -1,5 +1,6 @@
 package com.dontbesilent.dontbesilent.activity;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -15,6 +16,7 @@ import com.dontbesilent.dontbesilent.fragment.FragmentEvent;
 import com.dontbesilent.dontbesilent.fragment.FragmentInfo;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
     private BottomNavigationView mBottomNavigationView;
     private FragmentCampaign mFragmentCampaign;
     private FragmentEvent mFragmentEvent;
@@ -52,7 +54,22 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             showFragmentCampaign();
         }
+
+        if (Build.VERSION.SDK_INT >= 23){
+            requestPermissions(new String[] {
+                    "android.permission.READ_EXTERNAL_STORAGE",
+                    "android.permission.WRITE_EXTERNAL_STORAGE"
+            }, 0);
+        } else  {
+        }
+
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
 
     private void showFragmentCampaign() {
         if (mFragmentCampaign == null) {

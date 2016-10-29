@@ -1,6 +1,9 @@
 package com.dontbesilent.dontbesilent.util;
 
 import android.content.res.Resources;
+import android.os.Environment;
+
+import java.io.File;
 
 /**
  * Created by CuTi on 10/29/2016.
@@ -13,5 +16,10 @@ public class Utils {
 
     public static int pxToDp(int px) {
         return (int) (px / Resources.getSystem().getDisplayMetrics().density);
+    }
+
+    public static File getMediaDirectory()
+    {
+        return new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "Zalo");
     }
 }
