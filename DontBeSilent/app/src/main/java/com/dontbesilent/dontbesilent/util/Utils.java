@@ -1,6 +1,7 @@
 package com.dontbesilent.dontbesilent.util;
 
 import android.content.res.Resources;
+import android.os.Build;
 import android.os.Environment;
 
 import java.io.File;
@@ -21,5 +22,9 @@ public class Utils {
     public static File getMediaDirectory()
     {
         return new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "Zalo");
+    }
+
+    public static boolean materialDesignSupported() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
     }
 }

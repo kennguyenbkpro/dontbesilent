@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">DontBeSilent</string>
 
+    <string name="google_maps_key">AIzaSyCxTIoBlYhhJ6VqBeQlxM9vENjgPU90ZkE</string>
+
     <string name="bottom_nav_title_campaign">Campain</string>
     <string name="bottom_nav_title_event">Event</string>
     <string name="bottom_nav_title_my_info">My Info</string>
@@ -20,6 +22,6 @@
     <string name="title_valid_time">Valid time</string>
     <string name="hall_of_fame">Hall of fame</string>
 
-    <string name="google_maps_key">AIzaSyCxTIoBlYhhJ6VqBeQlxM9vENjgPU90ZkE</string>
+    <string name="btn_see_more">See more</string>
 
 </resources>

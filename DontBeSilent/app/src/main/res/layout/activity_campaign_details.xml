@@ -18,7 +18,7 @@
                 android:id="@+id/campaign_info_header"/>
 
             <LinearLayout
-                android:id="@+id/campaign_info_activity_and_comment"
+                android:id="@+id/campaign_info_donation_activity_comment"
                 android:layout_below="@id/campaign_info_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -33,27 +33,80 @@
                     android:textSize="14dp"
                     android:textColor="@android:color/black"
                     android:textStyle="bold"
-                    android:text="@string/title_activity"/>
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/campaign_detail_rv_activity"
+                    android:text="@string/title_donation"/>
+                <LinearLayout
+                    android:id="@+id/campaign_detail_donation"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"/>
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"/>
+                <Button
+                    android:id="@+id/campaign_detail_btn_see_more_donation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:textColor="@color/text_color_blue"
+                    android:text="@string/btn_see_more"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="#1F000000"
+                    android:layout_margin="5dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="10dp"
+                    android:textSize="14dp"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    android:text="@string/title_activity"/>
+                <LinearLayout
+                    android:id="@+id/campaign_detail_activities"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"/>
+                <Button
+                    android:id="@+id/campaign_detail_btn_see_more_activities"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:textColor="@color/text_color_blue"
+                    android:text="@string/btn_see_more"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="#1F000000"
+                    android:layout_margin="5dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:textSize="14dp"
                     android:textColor="@android:color/black"
                     android:textStyle="bold"
                     android:text="@string/title_comment"/>
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/campaign_detail_rv_comment"
+                <LinearLayout
+                    android:id="@+id/campaign_detail_comments"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"/>
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"/>
+                <Button
+                    android:id="@+id/campaign_detail_btn_see_more_comments"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:textColor="@color/text_color_blue"
+                    android:text="@string/btn_see_more"/>
             </LinearLayout>
         </RelativeLayout>
     </android.support.v4.widget.NestedScrollView>

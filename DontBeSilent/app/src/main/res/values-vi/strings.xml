@@ -13,4 +13,6 @@
     <string name="title_followers">Theo dõi</string>
     <string name="title_donation">Quyên góp</string>
     <string name="title_valid_time">Thời gian</string>
+
+    <string name="btn_see_more">Xem thêm</string>
 </resources>
