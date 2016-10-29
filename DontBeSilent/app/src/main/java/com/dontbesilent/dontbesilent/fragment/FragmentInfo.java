@@ -30,14 +30,7 @@ public class FragmentInfo extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View contentView = inflater.inflate(R.layout.fragment_info, container, false);
-        contentView.findViewById(R.id.text).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(FragmentInfo.this.getActivity(), InputCampaignActivity.class);
-                startActivity(intent);
-            }
-        });
+        View contentView = inflater.inflate(R.layout.user_info_tab_layout, container, false);
         return contentView;
     }
 }
