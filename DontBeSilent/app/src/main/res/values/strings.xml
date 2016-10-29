@@ -33,4 +33,6 @@
     <string name="user_info_user_detail">User detail</string>
     <string name="user_info_user_campaign">User\'s campaigns</string>
     <string name="user_info_bookmark">Bookmarks</string>
+
+    <string name="num_campaign">%d campaigns</string>
 </resources>

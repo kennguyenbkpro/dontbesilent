@@ -27,4 +27,6 @@
     <string name="user_info_user_detail">Thông tin người dùng</string>
     <string name="user_info_user_campaign">Chiến dịch đang theo dõi</string>
     <string name="user_info_bookmark">Bookmark</string>
+
+    <string name="num_campaign">%d chiến dịch</string>
 </resources>

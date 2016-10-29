@@ -99,7 +99,8 @@ public class StaffPickHeaderAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                     ((HallOfFameHolder)holder).mName.setCompoundDrawablePadding(5);
                     ((HallOfFameHolder)holder).mName.setCompoundDrawables(null, null, img, null);
                 }
-                ((HallOfFameHolder)holder).mProj.setText(hostArrayList.get(position - 2).numberOfCampaign + " campaigns");
+                ((HallOfFameHolder)holder).mProj.setText(
+                        holder.itemView.getResources().getString(R.string.num_campaign, hostArrayList.get(position - 2).numberOfCampaign));
                 Picasso.with(MainApplication.getAppContext()).load(hostArrayList.get(position - 2).avatar).into(((HallOfFameHolder)holder).mAvata);
                 ((HallOfFameHolder)holder).itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
