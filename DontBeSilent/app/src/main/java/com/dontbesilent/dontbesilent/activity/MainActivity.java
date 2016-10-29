@@ -62,7 +62,9 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= 23){
             requestPermissions(new String[] {
                     "android.permission.READ_EXTERNAL_STORAGE",
-                    "android.permission.WRITE_EXTERNAL_STORAGE"
+                    "android.permission.WRITE_EXTERNAL_STORAGE",
+                    "android.permission.ACCESS_COARSE_LOCATION",
+                    "android.permission.ACCESS_FINE_LOCATION"
             }, 0);
         } else  {
         }
@@ -90,14 +92,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showFragmentInfo() {
-        /*if (mFragmentInfo == null) {
+        if (mFragmentInfo == null) {
             mFragmentInfo = FragmentInfo.getInstance();
         }
-        showFragment(mFragmentInfo);*/
-        if(mFragmentMap == null) {
-            mFragmentMap = MapsFragment.getInstance();
-        }
-        showFragment(mFragmentMap);
+        showFragment(mFragmentInfo);
+//        if(mFragmentMap == null) {
+//            mFragmentMap = MapsFragment.getInstance();
+//        }
+//        showFragment(mFragmentMap);
     }
 
     private void showFragment(Fragment fragment) {

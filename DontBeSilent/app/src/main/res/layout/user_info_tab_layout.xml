@@ -7,6 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp" >
         <ImageView
+            android:id="@+id/cover_img"
             android:src="@drawable/host_banner"
             android:scaleType="centerCrop"
             android:layout_width="match_parent"
@@ -27,6 +28,7 @@
             android:shadowDy="2"
             android:text="Giọt máu cứu người"/>
         <ImageView
+
             android:src="@drawable/checked"
             android:layout_toRightOf="@id/name_tv"
             android:layout_alignParentBottom="true"
@@ -58,88 +60,96 @@
             android:gravity="center"
             />
     </RelativeLayout>
-    <View
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#DD121212"
-        android:layout_marginLeft="7dp"
-        android:layout_marginRight="7dp"
-        />
-    <TextView
-        android:text="Young volunteers from VNG company devoted 24h to tackle on critical problem. They are really passionated by..."
-        android:textSize="18sp"
-        android:padding="10dip"
-        android:minLines="5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#DD121212"
-        android:layout_marginLeft="7dp"
-        android:layout_marginRight="7dp"
-        />
-    <Button
-        android:text="Option"
-        android:textAllCaps="false"
-        android:gravity="left|center_vertical"
-        android:background="#00FFFFFF"
-        android:paddingLeft="14dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#DD121212"
-        android:layout_marginLeft="7dp"
-        android:layout_marginRight="7dp"
-        />
-    <Button
-        android:text="User Detail"
-        android:drawableRight="@drawable/right_arrow"
-        android:textAllCaps="false"
-        android:gravity="left|center_vertical"
-        android:background="#00FFFFFF"
-        android:paddingLeft="14dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#DD121212"
-        android:layout_marginLeft="7dp"
-        android:layout_marginRight="7dp"
-        />
-    <Button
-        android:text="User's Campaigns"
-        android:drawableRight="@drawable/right_arrow"
-        android:textAllCaps="false"
-        android:gravity="left|center_vertical"
-        android:background="#00FFFFFF"
-        android:paddingLeft="14dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#DD121212"
-        android:layout_marginLeft="7dp"
-        android:layout_marginRight="7dp"
-        />
-    <Button
-        android:text="Bookmarks"
-        android:drawableRight="@drawable/right_arrow"
-        android:textAllCaps="false"
-        android:gravity="left|center_vertical"
-        android:background="#00FFFFFF"
-        android:paddingLeft="14dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#DD121212"
-        android:layout_marginLeft="7dp"
-        android:layout_marginRight="7dp"
-        />
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="Young volunteers from VNG company devoted 24h to tackle on critical problem. They are really passionated by..."
+                android:textSize="18sp"
+                android:padding="10dip"
+                android:minLines="5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#DD121212"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                />
+            <Button
+                android:text="Option"
+                android:textAllCaps="false"
+                android:gravity="left|center_vertical"
+                android:background="#00FFFFFF"
+                android:paddingLeft="14dp"
+                android:paddingRight="14dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#DD121212"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                />
+            <Button
+                android:text="User Detail"
+                android:drawableRight="@drawable/right_arrow"
+                android:textAllCaps="false"
+                android:gravity="left|center_vertical"
+                android:background="#00FFFFFF"
+                android:paddingLeft="14dp"
+                android:paddingRight="14dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#DD121212"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                />
+            <Button
+                android:text="User's Campaigns"
+                android:drawableRight="@drawable/right_arrow"
+                android:textAllCaps="false"
+                android:gravity="left|center_vertical"
+                android:background="#00FFFFFF"
+                android:paddingLeft="14dp"
+                android:paddingRight="14dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#DD121212"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                />
+            <Button
+                android:text="Bookmarks"
+                android:drawableRight="@drawable/right_arrow"
+                android:textAllCaps="false"
+                android:gravity="left|center_vertical"
+                android:background="#00FFFFFF"
+                android:paddingLeft="14dp"
+                android:paddingRight="14dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#DD121212"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                />
+        </LinearLayout>
+    </ScrollView>
+
 </LinearLayout>
