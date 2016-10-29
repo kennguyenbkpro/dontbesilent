@@ -19,6 +19,8 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -48,6 +50,8 @@ public class LoginActivity extends Activity implements GoogleApiClient.Connectio
         final EditText emailEditText = (EditText) findViewById(R.id.email);
         final EditText passEditText = (EditText) findViewById(R.id.email);
         Button loginBtn = (Button) findViewById(R.id.loginBtn);
+
+        FirebaseApp.initializeApp(this);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();

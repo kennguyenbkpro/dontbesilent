@@ -14,12 +14,13 @@ import com.dontbesilent.dontbesilent.R;
 import com.dontbesilent.dontbesilent.fragment.FragmentCampaign;
 import com.dontbesilent.dontbesilent.fragment.FragmentEvent;
 import com.dontbesilent.dontbesilent.fragment.FragmentInfo;
+import com.dontbesilent.dontbesilent.fragment.FragmentStaffPick;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private BottomNavigationView mBottomNavigationView;
     private FragmentCampaign mFragmentCampaign;
-    private FragmentEvent mFragmentEvent;
+    private FragmentStaffPick mFragmentEvent;
     private FragmentInfo mFragmentInfo;
 
     @Override
@@ -80,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void showFragmentEvent() {
         if (mFragmentEvent == null) {
-            mFragmentEvent = FragmentEvent.getInstance();
+            mFragmentEvent = FragmentStaffPick.getInstance();
         }
         showFragment(mFragmentEvent);
     }
