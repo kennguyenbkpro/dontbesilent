@@ -11,27 +11,41 @@
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="5dp">
-        <ImageView
-            android:id="@+id/activity_item_imv_avatar"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_vertical"
-            android:background="@drawable/dummy_rounded_avatar"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/activity_item_tv_content"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp"
-            android:layout_gravity="center_vertical"
-            android:paddingRight="5dp"
-            android:textColor="@android:color/black"
-            android:textSize="12dp"
-            android:text="This is an dummy activity.\nActivity information goes here"/>
-    </FrameLayout>
+            android:layout_height="match_parent"
+            android:layout_margin="5dp">
+            <ImageView
+                android:id="@+id/activity_item_imv_avatar"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/dummy_rounded_avatar"/>
+
+            <TextView
+                android:id="@+id/activity_item_tv_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="60dp"
+                android:layout_gravity="center_vertical"
+                android:paddingRight="5dp"
+                android:textColor="@android:color/black"
+                android:textSize="14dp"
+                android:text="This is an dummy activity.\nActivity information goes here"/>
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/activity_item_imv"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="10dp"
+            android:scaleType="centerCrop"
+            android:visibility="gone"/>
+    </LinearLayout>
 
 </android.support.v7.widget.CardView>

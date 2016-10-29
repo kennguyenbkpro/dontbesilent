@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.dontbesilent.dontbesilent.R;
@@ -27,6 +28,8 @@ public class CampaignDonationListActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(getString(R.string.title_donation));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mRvDonations = (RecyclerView) findViewById(R.id.rv_campaign_donation_list);
         mRvDonationsLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
@@ -46,5 +49,13 @@ public class CampaignDonationListActivity extends AppCompatActivity {
             DummyDataUtils.getDummyDonation();
         }
         mCampaignDonationAdapter.setData(DummyDataUtils.mDonations);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

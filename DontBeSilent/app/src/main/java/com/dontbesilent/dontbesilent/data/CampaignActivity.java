@@ -7,4 +7,6 @@ package com.dontbesilent.dontbesilent.data;
 public class CampaignActivity {
     public String username;
     public String content;
+    public String url;
+    public String avatarUrl;
 }

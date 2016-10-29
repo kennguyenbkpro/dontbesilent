@@ -1,6 +1,7 @@
 package com.dontbesilent.dontbesilent.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import com.dontbesilent.dontbesilent.R;
 import com.dontbesilent.dontbesilent.data.CampaignComment;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -66,6 +68,12 @@ public class CampaignCommentAdapter extends RecyclerView.Adapter<CampaignComment
             try {
                 mTvName.setText(comment.username);
                 mTvContent.setText(comment.comment);
+                mTvUserType.setText(comment.userType);
+                if (!TextUtils.isEmpty(comment.avatarUrl)) {
+                    Picasso.with(itemView.getContext()).load(comment.avatarUrl).into(mImvAvatar);
+                } else {
+                    mImvAvatar.setImageResource(R.drawable.dummy_rounded_avatar);
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }

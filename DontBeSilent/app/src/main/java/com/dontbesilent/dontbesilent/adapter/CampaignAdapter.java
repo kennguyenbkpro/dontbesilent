@@ -59,31 +59,15 @@ public class CampaignAdapter extends RecyclerView.Adapter<CampaignAdapter.Holder
 
     @Override
     public void onBindViewHolder(final Holder holder, int position) {
-        if(position >= getItemCount()) return;
+        if (position >= getItemCount()) return;
         try {
-            Campaign campaign = mCampaigns.get(position);
-            holder.mTvCampaignName.setText(campaign.name);
-            holder.mTvCampaignDescription.setText(campaign.desception);
-            holder.mTvFollowersNum.setText(String.valueOf(campaign.numFollower));
-            holder.mTvDonationPercent.setText(String.valueOf((int) (campaign.incomeMoney * 100 / campaign.goalMoney)) + "%");
-            holder.mProgress.setProgress((int)(campaign.incomeMoney * 100 / campaign.goalMoney));
-            holder.mTvValidTimeValue.setText(campaign.startTime);
-            if (!Utils.isEmpty(campaign.image)){
-                Picasso.with(holder.itemView.getContext()).load(campaign.image).into(holder.mImvBanner);
-            }
-            Event event = DatabaseManager.getInstance().getEvents().get(campaign.eventId);
-            if(event != null) {
-                holder.mTvEventName.setText(event.name);
-            }
-            Host host = DatabaseManager.getInstance().getHosts().get(campaign.hostId);
-            if(host != null) {
-                holder.mTvOperationName.setText(host.name);
-            }
+            final Campaign campaign = mCampaigns.get(position);
+            holder.fillData(campaign);
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if (onCampaignSelectedListener != null) {
-                        onCampaignSelectedListener.onCampaignSelected(null, holder);
+                        onCampaignSelectedListener.onCampaignSelected(campaign, holder);
                     }
                 }
             });
@@ -124,6 +108,33 @@ public class CampaignAdapter extends RecyclerView.Adapter<CampaignAdapter.Holder
 //            mTvLocation = (TextView) itemView.findViewById(R.id.item_campaign_tv_location);
             mTvType = (TextView) itemView.findViewById(R.id.item_campaign_tv_type);
             mProgress = (ProgressBar) itemView.findViewById(R.id.item_campaign_progress);
+        }
+
+        public void fillData(Campaign campaign) {
+            try {
+                mTvCampaignName.setText(campaign.name);
+                mTvCampaignDescription.setText(campaign.desception);
+                mTvFollowersNum.setText(String.valueOf(campaign.numFollower));
+                mTvDonationPercent.setText(String.valueOf((int) (campaign.incomeMoney * 100 / campaign.goalMoney)) + "%");
+                mProgress.setProgress((int)(campaign.incomeMoney * 100 / campaign.goalMoney));
+                mTvValidTimeValue.setText(campaign.startTime);
+                if (!Utils.isEmpty(campaign.image)){
+                    Picasso.with(itemView.getContext()).load(campaign.image).into(mImvBanner);
+                }
+                Event event = DatabaseManager.getInstance().getEvents().get(campaign.eventId);
+                if (event != null) {
+                    mTvEventName.setText(event.name);
+                    mTvEventName.setVisibility(View.VISIBLE);
+                } else {
+                    mTvEventName.setVisibility(View.GONE);
+                }
+                Host host = DatabaseManager.getInstance().getHosts().get(campaign.hostId);
+                if (host != null) {
+                    mTvOperationName.setText(host.name);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

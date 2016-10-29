@@ -8,7 +8,6 @@ import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -84,6 +83,7 @@ public class FragmentCampaign extends BaseFragment implements CampaignAdapter.On
         Intent intent = new Intent(getContext(), CampaignDetailsActivity.class);
         ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),
                 holder.mCampaignInfoHeader, getString(R.string.transition_campaign));
+        intent.putExtra(CampaignDetailsActivity.KEY_CAMPAIGN_ID, campaign.id);
         startActivity(intent, activityOptionsCompat.toBundle());
     }
 

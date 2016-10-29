@@ -14,8 +14,8 @@
 
     <string name="donate">Donate</string>
 
-    <string name="title_activity">Activity</string>
-    <string name="title_comment">Comment</string>
+    <string name="title_activity">Activities</string>
+    <string name="title_comment">Comments</string>
     <string name="title_hosted_by">Hosted by:</string>
     <string name="title_followers">Followers</string>
     <string name="title_donation">Donation</string>
@@ -24,4 +24,7 @@
 
     <string name="btn_see_more">See more</string>
 
+    <string name="user_type_donator">Donator</string>
+    <string name="user_type_host">Host</string>
+    <string name="user_type_admin">Admin</string>
 </resources>

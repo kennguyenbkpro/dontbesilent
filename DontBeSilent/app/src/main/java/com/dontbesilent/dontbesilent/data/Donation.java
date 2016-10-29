@@ -14,6 +14,7 @@ public class Donation {
     public int type;
     public String donator;
     public CharSequence description;
+    public String avatarUrl;
 
     public int getTypeResource() {
         int resource = 0;

@@ -5,6 +5,7 @@
     android:id="@+id/activity_campaign_details"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     tools:context="com.dontbesilent.dontbesilent.activity.CampaignDetailsActivity">
 
     <android.support.v4.widget.NestedScrollView
@@ -25,12 +26,18 @@
                 android:orientation="vertical"
                 android:visibility="invisible">
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:background="#1F000000"/>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp"
-                    android:textSize="16dp"
+                    android:layout_marginBottom="5dp"
+                    android:textSize="18dp"
                     android:textColor="@android:color/black"
                     android:textStyle="bold"
                     android:text="@string/title_donation"/>
@@ -52,15 +59,16 @@
                     android:text="@string/btn_see_more"/>
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:background="#1F000000"
-                    android:layout_margin="5dp"/>
+                    android:layout_height="10dp"
+                    android:background="#1F000000"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:textSize="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:textSize="18dp"
                     android:textColor="@android:color/black"
                     android:textStyle="bold"
                     android:text="@string/title_activity"/>
@@ -82,15 +90,16 @@
                     android:text="@string/btn_see_more"/>
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:background="#1F000000"
-                    android:layout_margin="5dp"/>
+                    android:layout_height="10dp"
+                    android:background="#1F000000"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:textSize="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:textSize="18dp"
                     android:textColor="@android:color/black"
                     android:textStyle="bold"
                     android:text="@string/title_comment"/>

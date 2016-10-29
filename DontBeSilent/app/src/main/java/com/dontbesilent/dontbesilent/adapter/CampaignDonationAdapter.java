@@ -1,6 +1,7 @@
 package com.dontbesilent.dontbesilent.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import com.dontbesilent.dontbesilent.R;
 import com.dontbesilent.dontbesilent.data.Donation;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -61,6 +63,11 @@ public class CampaignDonationAdapter extends RecyclerView.Adapter<CampaignDonati
         public void fillData(Donation donation) {
             try {
                 mTvContent.setText(donation.description);
+                if (!TextUtils.isEmpty(donation.avatarUrl)) {
+                    Picasso.with(itemView.getContext()).load(donation.avatarUrl).into(mImv);
+                } else {
+                    mImv.setImageResource(R.drawable.dummy_rounded_avatar);
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }

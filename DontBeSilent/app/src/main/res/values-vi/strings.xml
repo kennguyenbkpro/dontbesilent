@@ -15,4 +15,8 @@
     <string name="title_valid_time">Thời gian</string>
 
     <string name="btn_see_more">Xem thêm</string>
+
+    <string name="user_type_donator">Nhà hảo tâm</string>
+    <string name="user_type_host">Nhà tổ chức</string>
+    <string name="user_type_admin">Quản trị viên</string>
 </resources>

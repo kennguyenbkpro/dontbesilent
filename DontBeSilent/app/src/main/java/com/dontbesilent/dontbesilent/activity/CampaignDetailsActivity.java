@@ -22,6 +22,7 @@ import android.widget.LinearLayout;
 
 import com.dontbesilent.dontbesilent.R;
 import com.dontbesilent.dontbesilent.adapter.CampaignActivityAdapter;
+import com.dontbesilent.dontbesilent.adapter.CampaignAdapter;
 import com.dontbesilent.dontbesilent.adapter.CampaignCommentAdapter;
 import com.dontbesilent.dontbesilent.adapter.CampaignDonationAdapter;
 import com.dontbesilent.dontbesilent.data.*;
@@ -31,6 +32,8 @@ import com.dontbesilent.dontbesilent.util.Utils;
 import java.util.ArrayList;
 
 public class CampaignDetailsActivity extends AppCompatActivity {
+
+    public static final String KEY_CAMPAIGN_ID = "CAMPAIGN_ID";
 
     private CoordinatorLayout mRootView;
     private FloatingActionButton mFabDonate;
@@ -156,6 +159,15 @@ public class CampaignDetailsActivity extends AppCompatActivity {
         populateDonation();
         populateActivities();
         populateComments();
+
+        String campaignId = getIntent().getExtras().getString(KEY_CAMPAIGN_ID);
+        Campaign campaign = DatabaseManager.getInstance().getCampaigns().get(campaignId);
+        if (campaign != null) {
+            CampaignAdapter.Holder holder = new CampaignAdapter.Holder(findViewById(R.id.campaign_info_header));
+            holder.fillData(campaign);
+        } else {
+            finish();
+        }
     }
 
     private void populateDonation() {

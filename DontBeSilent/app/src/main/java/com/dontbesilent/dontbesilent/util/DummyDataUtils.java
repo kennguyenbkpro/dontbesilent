@@ -5,6 +5,8 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.StyleSpan;
 
+import com.dontbesilent.dontbesilent.MainApplication;
+import com.dontbesilent.dontbesilent.R;
 import com.dontbesilent.dontbesilent.data.CampaignActivity;
 import com.dontbesilent.dontbesilent.data.CampaignComment;
 import com.dontbesilent.dontbesilent.data.Donation;
@@ -29,6 +31,32 @@ public class DummyDataUtils {
             "Quốc Nam", "Công ty XYZ", "Anh Tài"
     };
 
+    private static String[] avatarUrls = new String[] {
+            "http://images.tapchianhdep.net/15-10bo-hinh-anh-avatar-dep-lang-man9.jpg",
+            "http://i.9mobi.vn/cf/images/2015/04/nkk/hinh-avatar-dep-15.jpg",
+            "http://i.9mobi.vn/cf/images/2015/04/nkk/hinh-avatar-dep-14.jpg",
+            "http://4.bp.blogspot.com/-Q0tonCxQZ_Q/VibwOE-rq5I/AAAAAAAAAH4/7qolcObxD7I/s1600/hinh-avatar-dep-cho-facebook-1.jpg",
+            "http://tapchianhdep.com/wp-content/uploads/2016/05/bo-suu-tap-hinh-anh-avatar-doc-chat-nhat-qua-dat-3-220x162.jpg",
+            "http://vanvat.net/hinhanh/anhto/14326hinh-anh-avatar-doi-ban-khi-nho.jpg",
+            "http://s1-media.123mua.vn/2014/7/c/7c5e18b52f3c678f63df1ecf978715c5_200x200.jpg",
+            "http://thietbididong.net/wp-content/uploads/2015/08/avatar-2-9-hinh-anh-avatar-dep-ngay-2-9-1.png",
+            "http://i.9mobi.vn/cf/images/2015/04/nkk/hinh-avatar-dep-12.jpg",
+            "http://anhnendep.net/wp-content/uploads/2016/07/hinh-avatar-tinh-yeu-de-thuong-01.jpg",
+            "http://file.vforum.vn/hinh/2013/6/hinh-avatar-dep-3.jpg",
+            "http://thietbididong.net/wp-content/uploads/2015/08/avatar-2-9-hinh-anh-avatar-dep-ngay-2-9-2.jpg",
+            "http://taochu.trangnhat.net/avatars/thumbs/animal276.gif.thumb.jpg",
+            "http://thietbididong.net/wp-content/uploads/2015/04/tai-hinh-anh-avatar-la-co-viet-nam-quoc-ky-to-quoc-dep-nhat-2015-2.jpg",
+            "http://vanvat.net/hinhanh/anhto/14731avatar-ngo-nginh=tre-tho-cau-be-dang-yeu.jpg",
+            "http://3.bp.blogspot.com/-NLEYOcF2ydI/UOxZPEO3W2I/AAAAAAAAbCg/2muzCN0yM28/s1600/Avatar+kh%E1%BB%89+yoyo+cici+(11).jpg",
+            "http://vanvat.net/hinhanh/anhto/14730avatar-hinh-ve-ong-mat-troi.jpg",
+            "http://hinh-nen.org/images/131214avatar-dau-hoi-sanh-dieu-va-doc-dao.jpg",
+            "http://hinhanhdepvip.com/wp-content/uploads/2016/06/hinh-avatar-buon.jpg",
+            "http://chuotnhat84.xtgem.com/hinh-nen-rong-3d/hinh-nen-rong-3d-130.jpg",
+            "http://k14.vcmedia.vn/Images/Uploaded/Share/2010/11/21/101121wall11.jpg",
+            "http://gocchiase360.com/wp-content/uploads/2014/02/hinh-avatar-dep-nhat-ve-tinh-yeu-9.jpg",
+            "http://bloganhdep.net/wp-content/uploads/2014/08/top-hinh-nen-ipad-duoc-quan-tam-nhat-01.jpg"
+    };
+
     private static int[] donationType = new int[] {
             Donation.TYPE_BOOK, Donation.TYPE_CLOTHES, Donation.TYPE_MEDICINE,
             Donation.TYPE_MONEY, Donation.TYPE_OTHER
@@ -47,6 +75,7 @@ public class DummyDataUtils {
             Donation donation = new Donation();
             donation.type = donationType[random.nextInt(donationType.length)];
             donation.donator = donators[random.nextInt(donators.length)];
+            donation.avatarUrl = avatarUrls[random.nextInt(avatarUrls.length)];
             genDummyDonationMessage(donation);
             donations.add(donation);
         }
@@ -104,6 +133,15 @@ public class DummyDataUtils {
             CampaignComment campaignComment = new CampaignComment();
             campaignComment.username = donators[random.nextInt(donators.length)];
             campaignComment.comment = comments[random.nextInt(comments.length)];
+            campaignComment.avatarUrl = avatarUrls[random.nextInt(avatarUrls.length)];
+            int userType = random.nextInt(3);
+            if (userType == 0) {
+                campaignComment.userType = MainApplication.getInstance().getResources().getString(R.string.user_type_donator);
+            } else if (userType == 1) {
+                campaignComment.userType = MainApplication.getInstance().getResources().getString(R.string.user_type_host);
+            } else {
+                campaignComment.userType = MainApplication.getInstance().getResources().getString(R.string.user_type_admin);
+            }
             campaignComments.add(campaignComment);
         }
         mComments = campaignComments;
@@ -128,12 +166,33 @@ public class DummyDataUtils {
                 "Nulla elit sapien, rutrum sed venenatis et, consequat ut felis.",
                 "Donec eleifend ex sed placerat rhoncus. Nulla facilisi. Morbi purus velit, eleifend non enim id, ornare laoreet nunc. Sed eu aliquam tellus, ut maximus nulla."
         };
+
+        String[] urls = new String[] {
+                "http://www.longnhanai.net/upload/IMG_3589.JPG",
+                "http://125.235.29.7/media01/4ecda901441c7/2013/08/29/85003398-205f-4257-be6c-0341910aa788.jpg",
+                "http://www.daophatngaynay.com/vn/files/images/2011/quy4/1_PIC_1891_708459819.jpg",
+                "http://hungphatea.com/uploads/albums/tuithien/momat2.jpg",
+                "http://www.hoituthienphohien.com/2011pics/vulanbinhdinh_01.jpg",
+                "http://img.v3.news.zdn.vn/w660/Uploaded/Ycgmvlbp/2016_02_12/mailanvan1.jpg",
+                "http://khamnamkhoa.net/wp-content/uploads/2015/01/tu-thien-cam-hoi-sapa-9.jpg",
+                "http://images.sunflower.vn/wp-content/uploads/2016/01/du-lich-tu-thien-hinh-anh-03.jpg",
+                "https://vietbao.com/images/file/atCBwZp20QgBAMIk/pghh-lam-tu-thien.jpg",
+                "http://hungphatea.com/uploads/albums/tuithien/momat4.jpg",
+                "http://hungphatea.com/uploads/albums/tuithien/momat1.jpg",
+                "http://newsen.vn/data/news/2016/7/18/31/Ho-Ngoc-Ha-cung-hoc-tro-The-Face-di-tu-thien-5-1468833423.jpg",
+                "http://img.tintuc.vietgiaitri.com/2015/5/20/duc-tien-ve-nuoc-lam-tu-thien-sau-2-nam-dinh-cu-my-07b8f3.jpg"
+        };
         int numActivity = 5 + random.nextInt(20);
         ArrayList<CampaignActivity> campaignActivities = new ArrayList<>();
         for (int i = 0 ; i < numActivity; i++) {
             CampaignActivity campaignActivity = new CampaignActivity();
             campaignActivity.username = donators[random.nextInt(donators.length)];
             campaignActivity.content = activities[random.nextInt(activities.length)];
+            campaignActivity.avatarUrl = avatarUrls[random.nextInt(avatarUrls.length)];
+            boolean hasImage = (random.nextInt(2) == 0);
+            if (hasImage) {
+                campaignActivity.url = urls[random.nextInt(urls.length)];
+            }
             campaignActivities.add(campaignActivity);
         }
         mActivities = campaignActivities;

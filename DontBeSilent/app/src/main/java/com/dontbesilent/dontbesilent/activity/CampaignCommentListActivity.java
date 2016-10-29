@@ -1,17 +1,15 @@
 package com.dontbesilent.dontbesilent.activity;
 
-import android.graphics.Rect;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
+import android.view.MenuItem;
 
 import com.dontbesilent.dontbesilent.R;
 import com.dontbesilent.dontbesilent.adapter.CampaignCommentAdapter;
 import com.dontbesilent.dontbesilent.util.DummyDataUtils;
-import com.dontbesilent.dontbesilent.util.Utils;
 
 public class CampaignCommentListActivity extends AppCompatActivity {
 
@@ -26,6 +24,8 @@ public class CampaignCommentListActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(getString(R.string.title_comment));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mRvComments = (RecyclerView) findViewById(R.id.rv_campaign_comment_list);
         mRvCommentsLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
@@ -45,5 +45,13 @@ public class CampaignCommentListActivity extends AppCompatActivity {
             DummyDataUtils.getDummyComments();
         }
         mCampaignCommentAdapter.setData(DummyDataUtils.mComments);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
