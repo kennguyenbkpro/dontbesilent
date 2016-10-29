@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <!--TODO Add android:icon -->
     <item
         android:id="@+id/bottom_nav_main_campaign"
         android:enabled="true"
         android:title="@string/bottom_nav_title_campaign"
+        android:icon="@drawable/ic_flag_white_24dp"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/bottom_nav_main_event"
         android:enabled="true"
         android:title="@string/bottom_nav_title_event"
+        android:icon="@drawable/ic_event_white_24dp"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/bottom_nav_main_info"
