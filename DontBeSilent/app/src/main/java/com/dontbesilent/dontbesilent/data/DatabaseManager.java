@@ -27,6 +27,7 @@ public class DatabaseManager {
         if(mDatabaseManager == null) {
             synchronized (object) {
                 if(mDatabaseManager == null) {
+                    FirebaseDatabase.getInstance().setPersistenceEnabled(true);
                     mDatabaseManager = new DatabaseManager();
                 }
             }
