@@ -27,4 +27,8 @@ public class Utils {
     public static boolean materialDesignSupported() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
     }
+    public static boolean isEmpty(String s){
+        if (s == null || s.trim().length() == 0) return true;
+        return false;
+    }
 }
