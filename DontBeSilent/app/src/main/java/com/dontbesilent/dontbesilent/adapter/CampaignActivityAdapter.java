@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dontbesilent.dontbesilent.R;
-import com.dontbesilent.dontbesilent.data.CampaignActivity;
+import com.dontbesilent.dontbesilent.activity.CampaignActivity;
 
 import java.util.ArrayList;
 

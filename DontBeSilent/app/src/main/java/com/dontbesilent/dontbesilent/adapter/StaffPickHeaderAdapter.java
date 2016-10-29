@@ -38,6 +38,7 @@ public class StaffPickHeaderAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     private int HEADER_HALL_OF_FAME = 1;
 
     private DatabaseReference mDatabase;
+    private OnHostSelectListener onHostSelectListener;
 
     public StaffPickHeaderAdapter(List<Host> hosts, List<ItemStaffPick> staffPicks) {
 //        this.mStaffPickList = dataList;
@@ -47,6 +48,7 @@ public class StaffPickHeaderAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Host host = dataSnapshot.getValue(Host.class);
+                host.id = dataSnapshot.getKey();
                 hostArrayList.add(0, host);
                 notifyDataSetChanged();
             }
@@ -94,7 +96,7 @@ public class StaffPickHeaderAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         if(position >= getItemCount()) return;
         if (position == HEADER_CAMPAIGN) { //header
             if (holder instanceof HeaderAdapter.HeaderItemHolder) {
@@ -123,7 +125,9 @@ public class StaffPickHeaderAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                 ((HallOfFameHolder)holder).itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
+                        if (onHostSelectListener != null){
+                            onHostSelectListener.onSelect(hostArrayList.get(position - 2));
+                        }
                     }
                 });
             }
@@ -144,6 +148,10 @@ public class StaffPickHeaderAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         } else {
             return 2;
         }
+    }
+
+    public void setOnHostSelectListener(OnHostSelectListener onHostSelectListener) {
+        this.onHostSelectListener = onHostSelectListener;
     }
 
     public class HallOfFameHolder extends RecyclerView.ViewHolder {
@@ -228,6 +236,10 @@ public class StaffPickHeaderAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
             }
         }
+    }
+
+    public interface OnHostSelectListener {
+        void onSelect(Host host);
     }
 
 }

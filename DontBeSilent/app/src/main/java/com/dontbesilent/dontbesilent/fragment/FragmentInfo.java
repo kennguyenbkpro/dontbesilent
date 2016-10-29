@@ -1,8 +1,8 @@
 package com.dontbesilent.dontbesilent.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dontbesilent.dontbesilent.R;
+import com.dontbesilent.dontbesilent.activity.CampaignActivity;
 import com.dontbesilent.dontbesilent.data.Host;
 import com.dontbesilent.dontbesilent.util.Utils;
 import com.squareup.picasso.Picasso;
@@ -56,11 +57,7 @@ public class FragmentInfo extends BaseFragment {
         userCampaign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentCampaign fragmentCampaign = new FragmentCampaign();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_holder, fragmentCampaign)
-                        .addToBackStack(null)
-                        .commit();
+                startActivity(new Intent(getContext(), CampaignActivity.class));
             }
         });
 
@@ -69,7 +66,7 @@ public class FragmentInfo extends BaseFragment {
     }
 
     private void fillData(Host userInfo){
-        if (userInfo == null) return;
+        if (userInfo == null || nameTextView == null) return;
         nameTextView.setText(userInfo.name);
         desTextView.setText(userInfo.desception);
         if (!Utils.isEmpty(userInfo.avatar)){
@@ -83,5 +80,6 @@ public class FragmentInfo extends BaseFragment {
 
     public void setUserInfo(Host userInfo) {
         this.userInfo = userInfo;
+        fillData(userInfo);
     }
 }

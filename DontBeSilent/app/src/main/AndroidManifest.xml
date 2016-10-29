@@ -46,6 +46,8 @@
         <activity android:name=".activity.CampaignActivityListActivity" />
         <activity android:name=".activity.CampaignDonationListActivity" />
         <activity android:name=".activity.CampaignCommentListActivity" />
+                <activity android:name=".activity.HostActivity" />
+        <activity android:name=".activity.CampaignActivity" />
         <activity
             android:name=".activity.InputCampaignActivity"
             android:label="@string/title_activity_input_campaign"
