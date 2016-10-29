@@ -16,6 +16,7 @@ import com.dontbesilent.dontbesilent.fragment.FragmentCampaign;
 import com.dontbesilent.dontbesilent.fragment.FragmentEvent;
 import com.dontbesilent.dontbesilent.fragment.FragmentInfo;
 import com.dontbesilent.dontbesilent.fragment.FragmentStaffPick;
+import com.dontbesilent.dontbesilent.fragment.MapsFragment;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private FragmentCampaign mFragmentCampaign;
     private FragmentStaffPick mFragmentEvent;
     private FragmentInfo mFragmentInfo;
+    private MapsFragment mFragmentMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,10 +90,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showFragmentInfo() {
-        if (mFragmentInfo == null) {
+        /*if (mFragmentInfo == null) {
             mFragmentInfo = FragmentInfo.getInstance();
         }
-        showFragment(mFragmentInfo);
+        showFragment(mFragmentInfo);*/
+        if(mFragmentMap == null) {
+            mFragmentMap = MapsFragment.getInstance();
+        }
+        showFragment(mFragmentMap);
     }
 
     private void showFragment(Fragment fragment) {
