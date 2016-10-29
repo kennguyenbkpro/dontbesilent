@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.dontbesilent.dontbesilent.R;
@@ -61,6 +62,7 @@ public class CampaignAdapter extends RecyclerView.Adapter<CampaignAdapter.Holder
     }
 
     public static class Holder extends RecyclerView.ViewHolder {
+        public RelativeLayout mCampaignInfoHeader;
         public ImageView mImvBanner;
         public ImageView mImvBookmark;
         public TextView mTvCampaignName;
@@ -74,6 +76,7 @@ public class CampaignAdapter extends RecyclerView.Adapter<CampaignAdapter.Holder
 
         public Holder(View itemView) {
             super(itemView);
+            mCampaignInfoHeader = (RelativeLayout) itemView.findViewById(R.id.campaign_info_header);
             mImvBanner = (ImageView) itemView.findViewById(R.id.item_campaign_imv_image);
             mImvBookmark = (ImageView) itemView.findViewById(R.id.item_campaign_imv_bookmark);
             mTvCampaignName = (TextView) itemView.findViewById(R.id.item_campaign_tv_name);

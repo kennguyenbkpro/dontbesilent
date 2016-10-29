@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="5dp"
+    android:id="@+id/campaign_info_header"
+    android:transitionName="@string/transition_campaign">
+
+    <ImageView
+        android:id="@+id/item_campaign_imv_image"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:background="#30FF4081"
+        android:transitionName="@string/transition_image"/>
+
+    <ImageView
+        android:id="@+id/item_campaign_imv_bookmark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/item_campaign_imv_image"
+        android:layout_alignRight="@id/item_campaign_imv_image"
+        android:layout_marginRight="5dp"
+        android:paddingTop="-3dp"
+        android:src="@drawable/ic_bookmark_white_36dp"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:id="@+id/item_campaign_layout_operation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_campaign_imv_image"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        android:weightSum="5">
+
+        <LinearLayout
+            android:layout_weight="4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp">
+            <ImageView
+                android:id="@+id/item_campaign_imv_operation_avatar"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="#3000FFFF"/>
+
+            <TextView
+                android:id="@+id/item_campaign_tv_operation_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:gravity="left|center_vertical"
+                style="@style/TextViewCampaignItemInfo"
+                android:text="Thanh Nien"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/item_campaign_tv_type"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="left|center_vertical"
+            style="@style/TextViewCampaignItemInfo"
+            android:text="Charity"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/item_campaign_tv_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_campaign_layout_operation"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:gravity="left|center_vertical"
+        style="@style/TextViewName"
+        android:text="Campaign name goes here"/>
+
+    <TextView
+        android:id="@+id/item_campaign_tv_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_campaign_tv_name"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="3dp"
+        android:gravity="left|center_vertical"
+        style="@style/TextViewDescription"
+        android:text="Young volunteers from VNG company devoted 24 hours to tackle one problem"/>
+
+    <ProgressBar
+        android:id="@+id/item_campaign_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_campaign_tv_description"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="3dp"
+        android:indeterminate="false"
+        android:progress="30"
+        android:max="100"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
+
+    <include layout="@layout/campaign_info"
+        android:layout_below="@id/item_campaign_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp" />
+</RelativeLayout>

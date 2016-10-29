@@ -73,7 +73,8 @@ public class FragmentCampaign extends BaseFragment implements CampaignAdapter.On
     @Override
     public void onCampaignSelected(Campaign campaign, CampaignAdapter.Holder holder) {
         Intent intent = new Intent(getContext(), CampaignDetailsActivity.class);
-        ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), holder.mImvBanner, getString(R.string.transition_image));
+        ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),
+                holder.mCampaignInfoHeader, getString(R.string.transition_campaign));
         startActivity(intent, activityOptionsCompat.toBundle());
     }
 }

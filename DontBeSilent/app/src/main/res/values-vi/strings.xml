@@ -4,4 +4,9 @@
     <string name="bottom_nav_title_campaign">Chiến dịch</string>
     <string name="bottom_nav_title_event">Sự kiện</string>
     <string name="bottom_nav_title_my_info">Thông tin</string>
+
+    <string name="donate">Quyên góp</string>
+
+    <string name="title_activity">Hoạt động</string>
+    <string name="title_comment">Comment</string>
 </resources>

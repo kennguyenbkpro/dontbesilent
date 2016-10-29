@@ -5,7 +5,13 @@
     <string name="bottom_nav_title_event">Event</string>
     <string name="bottom_nav_title_my_info">My Info</string>
 
+    <string name="transition_campaign">campaign</string>
     <string name="transition_image">image</string>
     <string name="transition_name">name</string>
     <string name="title_activity_input_campaign">InputCampaignActivity</string>
+
+    <string name="donate">Donate</string>
+
+    <string name="title_activity">Activity</string>
+    <string name="title_comment">Comment</string>
 </resources>
