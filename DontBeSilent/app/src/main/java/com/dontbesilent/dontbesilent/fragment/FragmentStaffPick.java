@@ -1,7 +1,10 @@
 package com.dontbesilent.dontbesilent.fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,10 +17,14 @@ import com.dontbesilent.dontbesilent.adapter.StaffPickHeaderAdapter;
 /**
  * Created by LamHX on 29/10/2016.
  */
-public class FragmentStaffPick extends BaseFragment {
+public class FragmentStaffPick extends BaseFragment implements  SwipeRefreshLayout.OnRefreshListener {
     private RecyclerView mRvStaffPick;
     private LinearLayoutManager mLinearLayoutManager;
     private StaffPickHeaderAdapter mAdapter;
+
+    private SwipeRefreshLayout mSwipeToRefresh;
+
+    private Handler mHandlerUI;
 
     public static FragmentStaffPick getInstance() {
         Bundle bundle = new Bundle();
@@ -40,6 +47,33 @@ public class FragmentStaffPick extends BaseFragment {
         mAdapter = new StaffPickHeaderAdapter(null, null);
         mRvStaffPick.setLayoutManager(mLinearLayoutManager);
         mRvStaffPick.setAdapter(mAdapter);
+
+        mSwipeToRefresh = (SwipeRefreshLayout) contentView.findViewById(R.id.swipe_refresh_layout);
+        mSwipeToRefresh.setOnRefreshListener(this);
+
+        mHandlerUI = new Handler(Looper.getMainLooper());
+
         return contentView;
+    }
+
+    @Override
+    public void onRefresh() {
+        mSwipeToRefresh.setRefreshing(true);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(2000);
+                    mHandlerUI.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            mSwipeToRefresh.setRefreshing(false);
+                        }
+                    });
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 }

@@ -136,7 +136,14 @@ public class StaffPickHeaderAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             mRecyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
                 @Override
                 public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-                    outRect.top = Utils.dpToPx(3);
+                    int pos = parent.findContainingViewHolder(view).getAdapterPosition();
+                    if (pos != 0 && pos != mStaffPickList.size() -1) {
+//                    outRect.top = Utils.dpToPx(3);
+                        outRect.left = Utils.dpToPx(1);
+//                        outRect.right = Utils.dpToPx(1);
+                    } else if(pos != mStaffPickList.size() - 2) {
+
+                    }
                 }
             });
         }

@@ -3,8 +3,11 @@ package com.dontbesilent.dontbesilent.fragment;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -22,10 +25,13 @@ import com.dontbesilent.dontbesilent.util.Utils;
  * Created by CuTi on 10/27/2016.
  */
 
-public class FragmentCampaign extends BaseFragment implements CampaignAdapter.OnCampaignSelectedListener {
+public class FragmentCampaign extends BaseFragment implements CampaignAdapter.OnCampaignSelectedListener, SwipeRefreshLayout.OnRefreshListener {
     private RecyclerView mRvCampaigns;
     private CampaignAdapter mCampaignAdapter;
     private LinearLayoutManager mLinearLayoutManager;
+
+    private SwipeRefreshLayout mSwipeToRefresh;
+    private Handler mHandlerUI;
 
     public static FragmentCampaign getInstance() {
         Bundle bundle = new Bundle();
@@ -44,6 +50,9 @@ public class FragmentCampaign extends BaseFragment implements CampaignAdapter.On
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View contentView = inflater.inflate(R.layout.fragment_campaign, container, false);
         mRvCampaigns = (RecyclerView) contentView.findViewById(R.id.rv_campaigns);
+        mSwipeToRefresh = (SwipeRefreshLayout) contentView.findViewById(R.id.swipe_refresh_layout);
+        mSwipeToRefresh.setOnRefreshListener(this);
+        mHandlerUI = new Handler(Looper.getMainLooper());
         return contentView;
     }
 
@@ -76,5 +85,26 @@ public class FragmentCampaign extends BaseFragment implements CampaignAdapter.On
         ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),
                 holder.mCampaignInfoHeader, getString(R.string.transition_campaign));
         startActivity(intent, activityOptionsCompat.toBundle());
+    }
+
+    @Override
+    public void onRefresh() {
+        mSwipeToRefresh.setRefreshing(true);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(2000);
+                    mHandlerUI.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            mSwipeToRefresh.setRefreshing(false);
+                        }
+                    });
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 }
