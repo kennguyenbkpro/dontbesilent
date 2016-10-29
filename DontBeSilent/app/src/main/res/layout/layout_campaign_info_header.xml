@@ -26,7 +26,8 @@
         android:shadowDx="1"
         android:shadowRadius="1"
         android:shadowColor="@android:color/black"
-        android:text="Charity"/>
+        android:text="Charity"
+        android:visibility="gone"/>
 
     <ImageView
         android:id="@+id/item_campaign_imv_bookmark"
@@ -47,7 +48,8 @@
         android:gravity="center_vertical"
         android:background="#60000000"
         android:textColor="@android:color/white"
-        android:textSize="16dp"
+        android:textSize="18dp"
+        android:maxLines="1"
         android:text="Event name goes here"/>
 
     <TextView
@@ -56,6 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/item_campaign_imv_image"
         android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginTop="5dp"
         android:gravity="left|center_vertical"
         style="@style/TextViewName"
@@ -67,6 +70,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/item_campaign_tv_name"
         android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginTop="3dp"
         android:gravity="left|center_vertical"
         style="@style/TextViewDescription"
@@ -80,7 +84,7 @@
         android:orientation="horizontal"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="5dp">
+        android:layout_marginRight="10dp">
             <TextView
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"
@@ -101,6 +105,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:layout_marginLeft="12dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         />
 </RelativeLayout>

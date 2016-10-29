@@ -30,7 +30,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp"
-                    android:textSize="14dp"
+                    android:textSize="16dp"
                     android:textColor="@android:color/black"
                     android:textStyle="bold"
                     android:text="@string/title_donation"/>
@@ -48,6 +48,7 @@
                     android:paddingRight="5dp"
                     android:background="?attr/selectableItemBackground"
                     android:textColor="@color/text_color_blue"
+                    android:textSize="14dp"
                     android:text="@string/btn_see_more"/>
                 <View
                     android:layout_width="match_parent"
@@ -59,7 +60,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:textSize="14dp"
+                    android:textSize="16dp"
                     android:textColor="@android:color/black"
                     android:textStyle="bold"
                     android:text="@string/title_activity"/>
@@ -77,6 +78,7 @@
                     android:paddingRight="5dp"
                     android:background="?attr/selectableItemBackground"
                     android:textColor="@color/text_color_blue"
+                    android:textSize="14dp"
                     android:text="@string/btn_see_more"/>
                 <View
                     android:layout_width="match_parent"
@@ -88,7 +90,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:textSize="14dp"
+                    android:textSize="16dp"
                     android:textColor="@android:color/black"
                     android:textStyle="bold"
                     android:text="@string/title_comment"/>
@@ -106,6 +108,7 @@
                     android:paddingRight="5dp"
                     android:background="?attr/selectableItemBackground"
                     android:textColor="@color/text_color_blue"
+                    android:textSize="14dp"
                     android:text="@string/btn_see_more"/>
             </LinearLayout>
         </RelativeLayout>
