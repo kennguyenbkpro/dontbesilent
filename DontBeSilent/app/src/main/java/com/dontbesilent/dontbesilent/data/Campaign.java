@@ -5,9 +5,29 @@ package com.dontbesilent.dontbesilent.data;
  */
 
 public class Campaign {
+    public String id;
     public String name;
-    public String imgUrl;
-    public String address;
-    public long startTime;
-    public long endTime;
+    public String hostId;
+    public String eventId;
+    public String desception;
+    public String startTime;
+    public String endTime;
+    public Double goalMoney;
+    public Double incomeMoney;
+    public Long numFollower;
+
+    public Campaign() {
+    }
+
+    public Campaign(String name, String hostId, String eventId, String desception, String startTime, String endTime, Double goalMoney, Double incomeMoney, Long numFollower) {
+        this.name = name;
+        this.hostId = hostId;
+        this.eventId = eventId;
+        this.desception = desception;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.goalMoney = goalMoney;
+        this.incomeMoney = incomeMoney;
+        this.numFollower = numFollower;
+    }
 }
