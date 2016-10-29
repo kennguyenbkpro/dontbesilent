@@ -13,14 +13,17 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.dontbesilent.dontbesilent.R;
+import com.dontbesilent.dontbesilent.activity.CampaignCommentListActivity;
+import com.dontbesilent.dontbesilent.activity.CampaignMapDetails;
 import com.dontbesilent.dontbesilent.activity.HostActivity;
 import com.dontbesilent.dontbesilent.adapter.StaffPickHeaderAdapter;
+import com.dontbesilent.dontbesilent.data.Event;
 import com.dontbesilent.dontbesilent.data.Host;
 
 /**
  * Created by LamHX on 29/10/2016.
  */
-public class FragmentStaffPick extends BaseFragment implements  SwipeRefreshLayout.OnRefreshListener, StaffPickHeaderAdapter.OnHostSelectListener {
+public class FragmentStaffPick extends BaseFragment implements  SwipeRefreshLayout.OnRefreshListener, StaffPickHeaderAdapter.OnStaffPickSelectListener {
     private RecyclerView mRvStaffPick;
     private LinearLayoutManager mLinearLayoutManager;
     private StaffPickHeaderAdapter mAdapter;
@@ -50,7 +53,7 @@ public class FragmentStaffPick extends BaseFragment implements  SwipeRefreshLayo
         mAdapter = new StaffPickHeaderAdapter();
         mRvStaffPick.setLayoutManager(mLinearLayoutManager);
         mRvStaffPick.setAdapter(mAdapter);
-        mAdapter.setOnHostSelectListener(this);
+        mAdapter.setOnStaffPickSelectListener(this);
 
         mSwipeToRefresh = (SwipeRefreshLayout) contentView.findViewById(R.id.swipe_refresh_layout);
         mSwipeToRefresh.setOnRefreshListener(this);
@@ -85,6 +88,13 @@ public class FragmentStaffPick extends BaseFragment implements  SwipeRefreshLayo
     public void onSelect(Host host) {
         Intent intent = new Intent(getContext(), HostActivity.class);
         intent.putExtra(HostActivity.EXTRA_ID, host.id);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onEventBannerClick(Event event) {
+        Intent intent = new Intent(getActivity(), CampaignMapDetails.class);
+        intent.putExtra(CampaignMapDetails.EXTRA_ID_EVENT, event.id);
         startActivity(intent);
     }
 }

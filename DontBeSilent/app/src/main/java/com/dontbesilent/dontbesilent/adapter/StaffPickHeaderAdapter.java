@@ -32,7 +32,8 @@ public class StaffPickHeaderAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     private int HEADER_CAMPAIGN = 0;
     private int HEADER_HALL_OF_FAME = 1;
 
-    private OnHostSelectListener onHostSelectListener;
+    private OnStaffPickSelectListener onStaffPickSelectListener;
+
 
     public StaffPickHeaderAdapter() {
         DatabaseManager.getInstance().addListener(new DatabaseManager.Listener() {
@@ -103,8 +104,8 @@ public class StaffPickHeaderAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                 ((HallOfFameHolder)holder).itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if (onHostSelectListener != null){
-                            onHostSelectListener.onSelect(hostArrayList.get(position - 2));
+                        if (onStaffPickSelectListener != null){
+                            onStaffPickSelectListener.onSelect(hostArrayList.get(position - 2));
                         }
                     }
                 });
@@ -128,8 +129,8 @@ public class StaffPickHeaderAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         }
     }
 
-    public void setOnHostSelectListener(OnHostSelectListener onHostSelectListener) {
-        this.onHostSelectListener = onHostSelectListener;
+    public void setOnStaffPickSelectListener(OnStaffPickSelectListener onStaffPickSelectListener) {
+        this.onStaffPickSelectListener = onStaffPickSelectListener;
     }
 
     public class HallOfFameHolder extends RecyclerView.ViewHolder {
@@ -170,14 +171,17 @@ public class StaffPickHeaderAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             mRecyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
                 @Override
                 public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-                    int pos = parent.findContainingViewHolder(view).getAdapterPosition();
+                    outRect.left = Utils.dpToPx(5);
+                    outRect.bottom = Utils.dpToPx(3);
+                    outRect.right = Utils.dpToPx(5);
+                    /*int pos = parent.findContainingViewHolder(view).getAdapterPosition();
                     if (pos != 0 && pos != eventArrayList.size() -1) {
 //                    outRect.top = Utils.dpToPx(3);
-                        outRect.left = Utils.dpToPx(1);
+
 //                        outRect.right = Utils.dpToPx(1);
                     } else if(pos != eventArrayList.size() - 2) {
 
-                    }
+                    }*/
                 }
             });
         }
@@ -193,7 +197,15 @@ public class StaffPickHeaderAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         }
 
         @Override
-        public void onBindViewHolder(HeaderItemHolder holder, int position) {
+        public void onBindViewHolder(HeaderItemHolder holder, final int position) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (onStaffPickSelectListener != null){
+                        onStaffPickSelectListener.onEventBannerClick(eventArrayList.get(position));
+                    }
+                }
+            });
             Picasso.with(MainApplication.getAppContext()).load(eventArrayList.get(position).image).into(holder.imgStaffPick);
             holder.txtDecription.setText(eventArrayList.get(position).name);
         }
@@ -216,8 +228,9 @@ public class StaffPickHeaderAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         }
     }
 
-    public interface OnHostSelectListener {
+    public interface OnStaffPickSelectListener {
         void onSelect(Host host);
+        void onEventBannerClick(Event event);
     }
 
 }

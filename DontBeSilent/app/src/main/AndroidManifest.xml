@@ -52,6 +52,7 @@
             android:name=".activity.InputCampaignActivity"
             android:label="@string/title_activity_input_campaign"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".activity.CampaignMapDetails" />
     </application>
 
 </manifest>

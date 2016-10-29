@@ -9,6 +9,8 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.dontbesilent.dontbesilent.CacheVariant;
+import com.dontbesilent.dontbesilent.MainApplication;
 import com.dontbesilent.dontbesilent.R;
 import com.dontbesilent.dontbesilent.data.Campaign;
 import com.dontbesilent.dontbesilent.data.DatabaseManager;
@@ -34,15 +36,25 @@ public class CampaignAdapter extends RecyclerView.Adapter<CampaignAdapter.Holder
             @Override
             public void onDataChange() {
                 ArrayList<Campaign> campaigns = new ArrayList<>();
+                if(CacheVariant.ARRAY_ITEM_CAMPAIGN == null) {
+                    CacheVariant.ARRAY_ITEM_CAMPAIGN = new ArrayList<>();
+                }
+                CacheVariant.ARRAY_ITEM_CAMPAIGN.clear();
                 for(Map.Entry entry : DatabaseManager.getInstance().getCampaigns().entrySet()) {
                     campaigns.add(0, (Campaign) entry.getValue());
+                    CacheVariant.ARRAY_ITEM_CAMPAIGN.add((Campaign) entry.getValue());
                 }
                 mCampaigns = campaigns;
                 notifyDataSetChanged();
             }
         });
+        if(CacheVariant.ARRAY_ITEM_CAMPAIGN == null) {
+            CacheVariant.ARRAY_ITEM_CAMPAIGN = new ArrayList<>();
+        }
+        CacheVariant.ARRAY_ITEM_CAMPAIGN.clear();
         for (Map.Entry entry : DatabaseManager.getInstance().getCampaigns().entrySet()) {
             mCampaigns.add(0, (Campaign) entry.getValue());
+            CacheVariant.ARRAY_ITEM_CAMPAIGN.add((Campaign) entry.getValue());
         }
     }
 
@@ -119,7 +131,7 @@ public class CampaignAdapter extends RecyclerView.Adapter<CampaignAdapter.Holder
                 mProgress.setProgress((int)(campaign.incomeMoney * 100 / campaign.goalMoney));
                 mTvValidTimeValue.setText(campaign.startTime);
                 if (!Utils.isEmpty(campaign.image)){
-                    Picasso.with(itemView.getContext()).load(campaign.image).into(mImvBanner);
+                    Picasso.with(MainApplication.getAppContext()).load(campaign.image).into(mImvBanner);
                 }
                 Event event = DatabaseManager.getInstance().getEvents().get(campaign.eventId);
                 if (event != null) {

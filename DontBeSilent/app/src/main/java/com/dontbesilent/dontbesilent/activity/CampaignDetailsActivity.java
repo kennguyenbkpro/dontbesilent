@@ -115,7 +115,7 @@ public class CampaignDetailsActivity extends AppCompatActivity {
             }
         });
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().getSharedElementEnterTransition().addListener(new Transition.TransitionListener() {
                 @Override
                 public void onTransitionStart(Transition transition) {
@@ -150,8 +150,8 @@ public class CampaignDetailsActivity extends AppCompatActivity {
                 }
             });
         } else {
-            mLayoutDonationActivityComment.setVisibility(View.VISIBLE);
-        }
+        }*/
+        mLayoutDonationActivityComment.setVisibility(View.VISIBLE);
 
         mDonations = DummyDataUtils.getDummyDonation();
         mActivities = DummyDataUtils.getDummyActivities();
