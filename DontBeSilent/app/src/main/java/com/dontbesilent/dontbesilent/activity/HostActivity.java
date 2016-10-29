@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.dontbesilent.dontbesilent.R;
+import com.dontbesilent.dontbesilent.data.DatabaseManager;
 import com.dontbesilent.dontbesilent.data.Host;
 import com.dontbesilent.dontbesilent.fragment.FragmentInfo;
 import com.google.firebase.database.DataSnapshot;
@@ -25,20 +26,10 @@ public class HostActivity extends AppCompatActivity {
         final FragmentInfo fragmentInfo = (FragmentInfo) getSupportFragmentManager().findFragmentById(R.id.frag_info);
         if (getIntent().getExtras() != null){
             String id = getIntent().getExtras().getString(EXTRA_ID);
-            FirebaseDatabase.getInstance().getReference().child("hosts").child(id).addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    if (fragmentInfo != null){
-                        Host host = dataSnapshot.getValue(Host.class);
-                        fragmentInfo.setUserInfo(host);
-                    }
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
+            if (fragmentInfo != null){
+                Host host = DatabaseManager.getInstance().getHosts().get(id);
+                fragmentInfo.setUserInfo(host);
+            }
         }
     }
 }

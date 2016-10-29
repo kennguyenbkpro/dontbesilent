@@ -61,7 +61,8 @@ public class DatabaseManager {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 try {
                     Event event = dataSnapshot.getValue(Event.class);
-                    mapEvent.put(dataSnapshot.getKey(), event);
+                    event.id = dataSnapshot.getKey();
+                    mapEvent.put(event.id, event);
                     for (Listener listener : mListner) {
                         listener.onDataChange();
                     }
@@ -94,7 +95,8 @@ public class DatabaseManager {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Campaign campaign = dataSnapshot.getValue(Campaign.class);
-                mapCampaign.put(dataSnapshot.getKey(), campaign);
+                campaign.id = dataSnapshot.getKey();
+                mapCampaign.put(campaign.id, campaign);
                 for (Listener listener : mListner) {
                     listener.onDataChange();
                 }
@@ -124,7 +126,8 @@ public class DatabaseManager {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Host host = dataSnapshot.getValue(Host.class);
-                mapHost.put(dataSnapshot.getKey(), host);
+                host.id = dataSnapshot.getKey();
+                mapHost.put(host.id, host);
                 for (Listener listener : mListner) {
                     listener.onDataChange();
                 }
