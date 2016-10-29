@@ -5,18 +5,32 @@
     android:gravity="center">
     <EditText
         android:id="@+id/email"
-        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:hint="Ex: mrcharity@email.com"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <EditText
         android:id="@+id/password"
         android:hint="Password"
+        android:inputType="textPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-    <Button
-        android:id="@+id/loginBtn"
-        android:text="LOGIN"
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/loginBtn"
+            android:text="Login"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/signupBtn"
+            android:text="Signup"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 
 </LinearLayout>

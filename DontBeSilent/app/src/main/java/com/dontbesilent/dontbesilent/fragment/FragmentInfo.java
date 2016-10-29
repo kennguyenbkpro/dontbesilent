@@ -2,9 +2,11 @@ package com.dontbesilent.dontbesilent.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,6 +27,8 @@ public class FragmentInfo extends BaseFragment {
     private TextView desTextView;
 
     private UserInfo userInfo;
+
+    private Button userCampaign;
 
 
     public static FragmentInfo getInstance() {
@@ -48,6 +52,17 @@ public class FragmentInfo extends BaseFragment {
         verifyView = (View) contentView.findViewById(R.id.verify_ic);
         nameTextView = (TextView) contentView.findViewById(R.id.name_tv);
         desTextView = (TextView) contentView.findViewById(R.id.description_tv);
+        userCampaign = (Button) contentView.findViewById(R.id.user_campaign);
+        userCampaign.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentCampaign fragmentCampaign = new FragmentCampaign();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_holder, fragmentCampaign)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
 
         fillData(userInfo);
         return contentView;

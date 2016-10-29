@@ -37,4 +37,10 @@
         android:layout_height="match_parent"
         android:layout_above="@id/bottom_navigation_main"
         android:layout_marginTop="?attr/actionBarSize"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/fragment_holder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </RelativeLayout>

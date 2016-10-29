@@ -3,7 +3,6 @@ package com.dontbesilent.dontbesilent.adapter;
 import android.content.Context;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -77,11 +76,11 @@ public class StaffPickHeaderAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             if (holder instanceof HallOfFameHolder) {
                 ((HallOfFameHolder)holder).mName.setText(mHallOfFameList.get(position  - 2).mName);
                 if(mHallOfFameList.get(position  - 2).isPersuation) {
-//                    Drawable img = MainApplication.getAppContext().getResources().getDrawable(
-//                            R.drawable.check_true);
-//                    img.setBounds(0, 0, Utils.dpToPx(16), Utils.dpToPx(16));
-//                    ((HallOfFameHolder)holder).mName.setCompoundDrawablePadding(5);
-//                    ((HallOfFameHolder)holder).mName.setCompoundDrawables(null, null, img, null);
+                    Drawable img = MainApplication.getAppContext().getResources().getDrawable(
+                            R.drawable.checked);
+                    img.setBounds(0, 0, Utils.dpToPx(16), Utils.dpToPx(16));
+                    ((HallOfFameHolder)holder).mName.setCompoundDrawablePadding(5);
+                    ((HallOfFameHolder)holder).mName.setCompoundDrawables(null, null, img, null);
                 }
                 ((HallOfFameHolder)holder).mProj.setText(mHallOfFameList.get(position - 2).mProj);
                 Picasso.with(MainApplication.getAppContext()).load(mHallOfFameList.get(position - 2).mAvata).into(((HallOfFameHolder)holder).mAvata);

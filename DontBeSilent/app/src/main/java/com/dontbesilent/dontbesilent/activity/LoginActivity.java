@@ -20,7 +20,6 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
-import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -50,6 +49,7 @@ public class LoginActivity extends Activity implements GoogleApiClient.Connectio
         final EditText emailEditText = (EditText) findViewById(R.id.email);
         final EditText passEditText = (EditText) findViewById(R.id.email);
         Button loginBtn = (Button) findViewById(R.id.loginBtn);
+        Button signupBtn = (Button) findViewById(R.id.signupBtn);
 
         FirebaseApp.initializeApp(this);
 
@@ -74,7 +74,13 @@ public class LoginActivity extends Activity implements GoogleApiClient.Connectio
             loginBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    signInWithPassword(emailEditText.getText().toString(), passEditText.getText().toString());
+                    logInWithPassword(emailEditText.getText().toString(), passEditText.getText().toString());
+                }
+            });
+            signupBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    signUpWithPassword(emailEditText.getText().toString(), passEditText.getText().toString());
                 }
             });
             return;
@@ -116,9 +122,30 @@ public class LoginActivity extends Activity implements GoogleApiClient.Connectio
         }
     }
 
-    private void signInWithPassword(String email, String password){
+    private void signUpWithPassword(String email, String password){
 
         mFirebaseAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
+
+                        // If sign in fails, display a message to the user. If sign in succeeds
+                        // the auth state listener will be notified and logic to handle the
+                        // signed in user can be handled in the listener.
+                        if (!task.isSuccessful()) {
+                            Toast.makeText(LoginActivity.this, "Failed",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+
+                        // ...
+                    }
+                });
+    }
+
+    private void logInWithPassword(String email, String password){
+
+        mFirebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
