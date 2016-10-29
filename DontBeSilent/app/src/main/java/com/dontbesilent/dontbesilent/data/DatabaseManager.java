@@ -96,6 +96,7 @@ public class DatabaseManager {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Campaign campaign = dataSnapshot.getValue(Campaign.class);
+                campaign.endTime = "Còn " + (((int)(Math.random()*100)) % 10 + 2) + " ngày";
                 campaign.id = dataSnapshot.getKey();
                 mapCampaign.put(campaign.id, campaign);
                 for (Listener listener : mListner) {

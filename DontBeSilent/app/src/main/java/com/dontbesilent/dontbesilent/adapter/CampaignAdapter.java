@@ -129,7 +129,7 @@ public class CampaignAdapter extends RecyclerView.Adapter<CampaignAdapter.Holder
                 mTvFollowersNum.setText(String.valueOf(campaign.numFollower));
                 mTvDonationPercent.setText(String.valueOf((int) (campaign.incomeMoney * 100 / campaign.goalMoney)) + "%");
                 mProgress.setProgress((int)(campaign.incomeMoney * 100 / campaign.goalMoney));
-                mTvValidTimeValue.setText(campaign.startTime);
+                mTvValidTimeValue.setText(campaign.endTime);
                 if (!Utils.isEmpty(campaign.image)){
                     Picasso.with(MainApplication.getAppContext()).load(campaign.image).into(mImvBanner);
                 }
