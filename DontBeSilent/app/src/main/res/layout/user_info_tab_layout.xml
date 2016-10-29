@@ -157,6 +157,7 @@
                     android:layout_marginRight="7dp"
                     />
                 <Button
+                    android:id="@+id/bookmark"
                     android:text="Bookmarks"
                     android:textSize="16sp"
                     android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp"

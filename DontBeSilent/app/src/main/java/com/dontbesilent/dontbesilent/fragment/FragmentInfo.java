@@ -26,6 +26,7 @@ public class FragmentInfo extends BaseFragment {
     private View verifyView;
     private TextView nameTextView;
     private TextView desTextView;
+    private TextView bookmark;
 
     private Host userInfo;
 
@@ -55,6 +56,13 @@ public class FragmentInfo extends BaseFragment {
         desTextView = (TextView) contentView.findViewById(R.id.description_tv);
         userCampaign = (Button) contentView.findViewById(R.id.user_campaign);
         userCampaign.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), CampaignActivity.class));
+            }
+        });
+        bookmark = (TextView)contentView.findViewById(R.id.bookmark);
+        bookmark.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getContext(), CampaignActivity.class));

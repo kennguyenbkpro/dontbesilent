@@ -97,18 +97,10 @@ public class MainActivity extends AppCompatActivity {
     private void showFragmentInfo() {
         if (mFragmentInfo == null) {
             mFragmentInfo = FragmentInfo.getInstance();
-            Host userInfo = new Host();
-            userInfo.name = FirebaseAuth.getInstance().getCurrentUser().getEmail();
-            userInfo.isVerified = false;
-            userInfo.avatar = null;
-            userInfo.cover = null;
-            mFragmentInfo.setUserInfo(userInfo);
+            Host host = DatabaseManager.getInstance().getHosts().get("-KVG9kmNfBKctQY-2KLZ");
+            mFragmentInfo.setUserInfo(host);
         }
         showFragment(mFragmentInfo);
-//        if(mFragmentMap == null) {
-//            mFragmentMap = MapsFragment.getInstance();
-//        }
-//        showFragment(mFragmentMap);
     }
 
     private void showFragment(Fragment fragment) {
