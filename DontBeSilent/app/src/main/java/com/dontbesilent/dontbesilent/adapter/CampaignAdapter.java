@@ -43,7 +43,8 @@ public class CampaignAdapter extends RecyclerView.Adapter<CampaignAdapter.Holder
     }
 
     @Override
-    public void onBindViewHolder(final Holder holder, int position) {
+    public void onBindViewHolder(Holder holder, int position) {
+        if(position >= getItemCount()) return;
         try {
 //            Campaign campaign = mCampaigns.get(position);
             holder.itemView.setOnClickListener(new View.OnClickListener() {
