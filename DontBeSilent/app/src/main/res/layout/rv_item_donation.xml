@@ -20,13 +20,13 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center_vertical"
-            android:background="@android:color/holo_blue_bright"/>
+            android:background="@drawable/dummy_rounded_avatar"/>
 
         <TextView
             android:id="@+id/donation_item_tv_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="55dp"
+            android:layout_marginLeft="60dp"
             android:layout_gravity="center_vertical"
             android:paddingRight="5dp"
             android:textColor="@android:color/black"
