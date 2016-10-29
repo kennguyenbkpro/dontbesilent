@@ -8,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dontbesilent.dontbesilent.R;
-import com.dontbesilent.dontbesilent.activity.CampaignActivity;
 
 import java.util.ArrayList;
 
@@ -17,9 +16,9 @@ import java.util.ArrayList;
  */
 public class CampaignActivityAdapter extends RecyclerView.Adapter<CampaignActivityAdapter.Holder> {
 
-    private ArrayList<CampaignActivity> mActivities = new ArrayList<>();
+    private ArrayList<com.dontbesilent.dontbesilent.data.CampaignActivity> mActivities = new ArrayList<>();
 
-    public void setData(ArrayList<CampaignActivity> campaignActivities) {
+    public void setData(ArrayList<com.dontbesilent.dontbesilent.data.CampaignActivity> campaignActivities) {
         mActivities.clear();
         if (campaignActivities != null) {
             mActivities.addAll(campaignActivities);
@@ -58,7 +57,7 @@ public class CampaignActivityAdapter extends RecyclerView.Adapter<CampaignActivi
             mTvContent = (TextView) itemView.findViewById(R.id.activity_item_tv_content);
         }
 
-        public void fillData(CampaignActivity activity) {
+        public void fillData(com.dontbesilent.dontbesilent.data.CampaignActivity activity) {
             try {
                 mTvContent.setText(activity.content);
             } catch (Exception e) {

@@ -24,9 +24,7 @@ import com.dontbesilent.dontbesilent.R;
 import com.dontbesilent.dontbesilent.adapter.CampaignActivityAdapter;
 import com.dontbesilent.dontbesilent.adapter.CampaignCommentAdapter;
 import com.dontbesilent.dontbesilent.adapter.CampaignDonationAdapter;
-import com.dontbesilent.dontbesilent.data.CampaignActivity;
-import com.dontbesilent.dontbesilent.data.CampaignComment;
-import com.dontbesilent.dontbesilent.data.Donation;
+import com.dontbesilent.dontbesilent.data.*;
 import com.dontbesilent.dontbesilent.util.DummyDataUtils;
 import com.dontbesilent.dontbesilent.util.Utils;
 
@@ -48,7 +46,7 @@ public class CampaignDetailsActivity extends AppCompatActivity {
     private View mBtnSeeMoreComments;
 
     private ArrayList<Donation> mDonations = new ArrayList<>();
-    private ArrayList<CampaignActivity> mActivities = new ArrayList<>();
+    private ArrayList<com.dontbesilent.dontbesilent.data.CampaignActivity> mActivities = new ArrayList<>();
     private ArrayList<CampaignComment> mComments = new ArrayList<>();
 
     private static final int MAX_SAMPLE_DONATION_ACT_COMMENT_DISPLAYED = 3;
