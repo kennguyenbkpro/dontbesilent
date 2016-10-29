@@ -1,21 +1,34 @@
 package com.dontbesilent.dontbesilent.activity;
 
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 
 import com.dontbesilent.dontbesilent.R;
+import com.dontbesilent.dontbesilent.adapter.CampaignActivityAdapter;
+import com.dontbesilent.dontbesilent.adapter.CampaignCommentAdapter;
+import com.dontbesilent.dontbesilent.util.Utils;
 
 public class CampaignDetailsActivity extends AppCompatActivity {
 
     private FloatingActionButton mFabDonate;
     private View mLayoutDonate;
     private BottomSheetBehavior mBottomSheetBehavior;
+
+    private RecyclerView mRvActivities;
+    private LinearLayoutManager mRvActivitiesLayoutManager;
+    private CampaignActivityAdapter mCampaignActivityAdapter;
+
+    private RecyclerView mRvComments;
+    private LinearLayoutManager mRvCommentsLayoutManager;
+    private CampaignCommentAdapter mCampaignCommentAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +60,34 @@ public class CampaignDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+
+        mRvActivities = (RecyclerView) findViewById(R.id.campaign_detail_rv_activity);
+        mRvActivitiesLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        mCampaignActivityAdapter = new CampaignActivityAdapter();
+        mRvActivities.setLayoutManager(mRvActivitiesLayoutManager);
+        mRvActivities.setAdapter(mCampaignActivityAdapter);
+        mRvActivities.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+                if (parent.findContainingViewHolder(view).getAdapterPosition() > 0) {
+                    outRect.top = Utils.dpToPx(2);
+                }
+            }
+        });
+
+        mRvComments = (RecyclerView) findViewById(R.id.campaign_detail_rv_comment);
+        mRvCommentsLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        mCampaignCommentAdapter = new CampaignCommentAdapter();
+        mRvComments.setLayoutManager(mRvCommentsLayoutManager);
+        mRvComments.setAdapter(mCampaignCommentAdapter);
+        mRvComments.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+                if (parent.findContainingViewHolder(view).getAdapterPosition() > 0) {
+                    outRect.top = Utils.dpToPx(2);
+                }
             }
         });
     }

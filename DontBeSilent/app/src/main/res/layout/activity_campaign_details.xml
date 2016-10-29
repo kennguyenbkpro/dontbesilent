@@ -7,8 +7,54 @@
     android:layout_height="match_parent"
     tools:context="com.dontbesilent.dontbesilent.activity.CampaignDetailsActivity">
 
-    <include layout="@layout/layout_campaign_info_header"/>
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
 
+            <include layout="@layout/layout_campaign_info_header"
+                android:id="@+id/campaign_info_header"/>
+
+            <LinearLayout
+                android:layout_below="@id/campaign_info_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:textSize="14dp"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    android:text="@string/title_activity"/>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/campaign_detail_rv_activity"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:textSize="14dp"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    android:text="@string/title_comment"/>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/campaign_detail_rv_comment"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"/>
+            </LinearLayout>
+        </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
     <ImageView
         android:id="@+id/campaign_detail_btn_back"
         android:layout_width="wrap_content"
