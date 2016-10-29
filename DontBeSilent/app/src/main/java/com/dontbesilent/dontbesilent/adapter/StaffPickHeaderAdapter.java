@@ -13,9 +13,14 @@ import android.widget.TextView;
 
 import com.dontbesilent.dontbesilent.MainApplication;
 import com.dontbesilent.dontbesilent.R;
-import com.dontbesilent.dontbesilent.item.ItemHallOfFame;
+import com.dontbesilent.dontbesilent.data.Host;
 import com.dontbesilent.dontbesilent.item.ItemStaffPick;
 import com.dontbesilent.dontbesilent.util.Utils;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -27,18 +32,49 @@ import java.util.List;
 public class StaffPickHeaderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context mContext;
     private List<ItemStaffPick> mStaffPickList = new ArrayList<>();
-    private List<ItemHallOfFame> mHallOfFameList = new ArrayList<>();
+    private List<Host> hostArrayList = new ArrayList<>();
 
     private int HEADER_CAMPAIGN = 0;
     private int HEADER_HALL_OF_FAME = 1;
 
-    public StaffPickHeaderAdapter(List<ItemHallOfFame> hallOfFames, List<ItemStaffPick> staffPicks) {
+    private DatabaseReference mDatabase;
+
+    public StaffPickHeaderAdapter(List<Host> hosts, List<ItemStaffPick> staffPicks) {
 //        this.mStaffPickList = dataList;
 
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child("hosts").limitToLast(20).addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Host host = dataSnapshot.getValue(Host.class);
+                hostArrayList.add(0, host);
+                notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         //Test
         for (int i = 0; i < 10; i++) {
             mStaffPickList.add(new ItemStaffPick("http://www.urwallpapers.com/download/7547/Macro/hd_wallpaper_wallpaper_download_free_grass-1024x600.jpg", "Hoang Xuan Lam"));
-            mHallOfFameList.add(new ItemHallOfFame());
+//            hostArrayList.add(new ItemHallOfFame());
         }
 
     }
@@ -74,23 +110,29 @@ public class StaffPickHeaderAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             }
         } else {
             if (holder instanceof HallOfFameHolder) {
-                ((HallOfFameHolder)holder).mName.setText(mHallOfFameList.get(position  - 2).mName);
-                if(mHallOfFameList.get(position  - 2).isPersuation) {
+                ((HallOfFameHolder)holder).mName.setText(hostArrayList.get(position  - 2).name);
+                if(hostArrayList.get(position  - 2).isVerified) {
                     Drawable img = MainApplication.getAppContext().getResources().getDrawable(
                             R.drawable.checked);
                     img.setBounds(0, 0, Utils.dpToPx(16), Utils.dpToPx(16));
                     ((HallOfFameHolder)holder).mName.setCompoundDrawablePadding(5);
                     ((HallOfFameHolder)holder).mName.setCompoundDrawables(null, null, img, null);
                 }
-                ((HallOfFameHolder)holder).mProj.setText(mHallOfFameList.get(position - 2).mProj);
-                Picasso.with(MainApplication.getAppContext()).load(mHallOfFameList.get(position - 2).mAvata).into(((HallOfFameHolder)holder).mAvata);
+                ((HallOfFameHolder)holder).mProj.setText(hostArrayList.get(position - 2).numberOfCampaign + " campaigns");
+                Picasso.with(MainApplication.getAppContext()).load(hostArrayList.get(position - 2).avatar).into(((HallOfFameHolder)holder).mAvata);
+                ((HallOfFameHolder)holder).itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                });
             }
         }
     }
 
     @Override
     public int getItemCount() {
-        return mHallOfFameList.size() + 2;
+        return hostArrayList.size() + 2;
     }
 
     @Override

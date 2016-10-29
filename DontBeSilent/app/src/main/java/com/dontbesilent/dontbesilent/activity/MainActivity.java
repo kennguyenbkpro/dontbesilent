@@ -12,11 +12,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.dontbesilent.dontbesilent.R;
-import com.dontbesilent.dontbesilent.data.UserInfo;
+import com.dontbesilent.dontbesilent.data.Host;
 import com.dontbesilent.dontbesilent.fragment.FragmentCampaign;
 import com.dontbesilent.dontbesilent.fragment.FragmentInfo;
 import com.dontbesilent.dontbesilent.fragment.FragmentStaffPick;
 import com.dontbesilent.dontbesilent.fragment.MapsFragment;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -94,10 +95,11 @@ public class MainActivity extends AppCompatActivity {
     private void showFragmentInfo() {
         if (mFragmentInfo == null) {
             mFragmentInfo = FragmentInfo.getInstance();
-            UserInfo userInfo = new UserInfo("http://www.thiennguyen.org/wp-content/uploads/2014/12/45674_139609939413758_4710068_n.jpg",
-                    "http://www.thiennguyen.org/wp-content/uploads/2014/08/ccum1.jpg",
-                    "Chắp cánh ước mơ", "Chào mừng quý vị và các bạn ghé thăm trang nhà của nhóm Thiện Nguyện. Đây là trang thông tin hoạt động chính của nhóm. Nội dung trang đăng tải các sự kiện, hình ảnh, các bài viết chia sẻ của nhóm về các đối tượng mà mục tiêu nhóm hướng đến. Rất mong sự đón nhận của tất cả quý vị.",
-                    true);
+            Host userInfo = new Host();
+            userInfo.name = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+            userInfo.isVerified = false;
+            userInfo.avatar = null;
+            userInfo.cover = null;
             mFragmentInfo.setUserInfo(userInfo);
         }
         showFragment(mFragmentInfo);

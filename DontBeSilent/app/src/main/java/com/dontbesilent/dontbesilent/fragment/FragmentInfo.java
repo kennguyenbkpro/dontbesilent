@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dontbesilent.dontbesilent.R;
-import com.dontbesilent.dontbesilent.data.UserInfo;
+import com.dontbesilent.dontbesilent.data.Host;
 import com.dontbesilent.dontbesilent.util.Utils;
 import com.squareup.picasso.Picasso;
 
@@ -26,7 +26,7 @@ public class FragmentInfo extends BaseFragment {
     private TextView nameTextView;
     private TextView desTextView;
 
-    private UserInfo userInfo;
+    private Host userInfo;
 
     private Button userCampaign;
 
@@ -68,20 +68,20 @@ public class FragmentInfo extends BaseFragment {
         return contentView;
     }
 
-    private void fillData(UserInfo userInfo){
+    private void fillData(Host userInfo){
         if (userInfo == null) return;
-        nameTextView.setText(userInfo.getName());
-        desTextView.setText(userInfo.getDescription());
-        if (!Utils.isEmpty(userInfo.getAvtUrl())){
-            Picasso.with(getContext()).load(userInfo.getAvtUrl()).into(avtImageView);
+        nameTextView.setText(userInfo.name);
+        desTextView.setText(userInfo.desception);
+        if (!Utils.isEmpty(userInfo.avatar)){
+            Picasso.with(getContext()).load(userInfo.avatar).into(avtImageView);
         }
-        if (!Utils.isEmpty(userInfo.getAvtUrl())){
-            Picasso.with(getContext()).load(userInfo.getCoverUrl()).into(coverImageView);
+        if (!Utils.isEmpty(userInfo.cover)){
+            Picasso.with(getContext()).load(userInfo.cover).into(coverImageView);
         }
-        verifyView.setVisibility(userInfo.isVerified()? View.VISIBLE : View.INVISIBLE);
+        verifyView.setVisibility(userInfo.isVerified ? View.VISIBLE : View.INVISIBLE);
     }
 
-    public void setUserInfo(UserInfo userInfo) {
+    public void setUserInfo(Host userInfo) {
         this.userInfo = userInfo;
     }
 }
