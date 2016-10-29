@@ -2,6 +2,7 @@ package com.dontbesilent.dontbesilent.adapter;
 
 import android.content.Context;
 import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -65,7 +66,13 @@ public class StaffPickHeaderAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
             }
         } else if (position == HEADER_HALL_OF_FAME) {
+            if(holder instanceof HallOfFameHeader) {
+                Drawable img = MainApplication.getAppContext().getResources().getDrawable(
+                        R.drawable.flag);
+                img.setBounds(0, 0, Utils.dpToPx(40), Utils.dpToPx(40));
+                ((HallOfFameHeader) holder).mTextHallOfFameHeader.setCompoundDrawables(img, null, null, null);
 
+            }
         } else {
             if (holder instanceof HallOfFameHolder) {
                 ((HallOfFameHolder)holder).mName.setText(mHallOfFameList.get(position  - 2).mName);
