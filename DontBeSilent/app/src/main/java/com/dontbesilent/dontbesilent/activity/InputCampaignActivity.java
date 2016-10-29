@@ -181,6 +181,26 @@ public class InputCampaignActivity extends AppCompatActivity {
 //
 //                    }
 //                });
+
+
+//                    if(dataSnapshot.getKey().equals("-KVGK3sSyBPnW_yJansN")) {
+//                        Event event = dataSnapshot.getValue(Event.class);
+//                        event.image = "https://hieuminh.files.wordpress.com/2013/11/lc5a9-mie1bb81n-trung.jpg";
+//                        mDatabase.child("events").child("-KVGK3sSyBPnW_yJansN").setValue(event);
+//                    } else if(dataSnapshot.getKey().equals("-KVGK3so3UTq-hRyF0S1")) {
+//                        Event event = dataSnapshot.getValue(Event.class);
+//                        event.image = "http://files.tamsugiadinh.vn/News/1970/01/con-bi-gian-nao-benh-tim-ngang.jpg";
+//                        mDatabase.child("events").child("-KVGK3so3UTq-hRyF0S1").setValue(event);
+//                    } else if(dataSnapshot.getKey().equals("-KVGK3t5CaXlNr0n78rg")) {
+//                        Event event = dataSnapshot.getValue(Event.class);
+//                        event.image = "http://www.nhantu.com/images/post/2014/11/08/12//DSC_1421-709ed.JPG";
+//                        mDatabase.child("events").child("-KVGK3t5CaXlNr0n78rg").setValue(event);
+//                    } else if(dataSnapshot.getKey().equals("-KVGK3tNSTfGKVxej3CQ")) {
+//                        Event event = dataSnapshot.getValue(Event.class);
+//                        event.image = "http://ngoctrongtim.org/wp-content/uploads/2015/12/4a41f9a6-ba1d-4366-801e-be8a8d5b0008-580x321.jpg";
+//                        mDatabase.child("events").child("-KVGK3tNSTfGKVxej3CQ").setValue(event);
+//                    }
+
             }
         });
     }

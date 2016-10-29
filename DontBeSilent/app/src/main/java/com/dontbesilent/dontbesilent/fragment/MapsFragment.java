@@ -141,7 +141,7 @@ public class MapsFragment extends Fragment {
             Marker m = mMap.addMarker(new MarkerOptions()
                             .position(new LatLng(Double.parseDouble(eventInfo.mLatitude), Double.parseDouble(eventInfo.mLongtitude)))
                             .title(eventInfo.name)
-                            .snippet(eventInfo.description)
+                            .snippet(eventInfo.desception)
                             .icon(bmpIcon)
             );
             return m;

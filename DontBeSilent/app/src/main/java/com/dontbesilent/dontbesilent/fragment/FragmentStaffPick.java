@@ -47,7 +47,7 @@ public class FragmentStaffPick extends BaseFragment implements  SwipeRefreshLayo
         View contentView = inflater.inflate(R.layout.fragment_staff_pick, container, false);
         mRvStaffPick = (RecyclerView) contentView.findViewById(R.id.staff_pick_recycler_view);
         mLinearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-        mAdapter = new StaffPickHeaderAdapter(null, null);
+        mAdapter = new StaffPickHeaderAdapter();
         mRvStaffPick.setLayoutManager(mLinearLayoutManager);
         mRvStaffPick.setAdapter(mAdapter);
         mAdapter.setOnHostSelectListener(this);

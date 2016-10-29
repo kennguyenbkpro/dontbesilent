@@ -1,6 +1,5 @@
 package com.dontbesilent.dontbesilent.adapter;
 
-import android.content.Context;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,72 +12,51 @@ import android.widget.TextView;
 
 import com.dontbesilent.dontbesilent.MainApplication;
 import com.dontbesilent.dontbesilent.R;
+import com.dontbesilent.dontbesilent.data.DatabaseManager;
+import com.dontbesilent.dontbesilent.data.Event;
 import com.dontbesilent.dontbesilent.data.Host;
-import com.dontbesilent.dontbesilent.item.ItemStaffPick;
 import com.dontbesilent.dontbesilent.util.Utils;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by LamHX on 29/10/2016.
  */
 public class StaffPickHeaderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private Context mContext;
-    private List<ItemStaffPick> mStaffPickList = new ArrayList<>();
+    private List<Event> eventArrayList = new ArrayList<>();
     private List<Host> hostArrayList = new ArrayList<>();
 
     private int HEADER_CAMPAIGN = 0;
     private int HEADER_HALL_OF_FAME = 1;
 
-    private DatabaseReference mDatabase;
     private OnHostSelectListener onHostSelectListener;
 
-    public StaffPickHeaderAdapter(List<Host> hosts, List<ItemStaffPick> staffPicks) {
-//        this.mStaffPickList = dataList;
-
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("hosts").limitToLast(20).addChildEventListener(new ChildEventListener() {
+    public StaffPickHeaderAdapter() {
+        DatabaseManager.getInstance().addListener(new DatabaseManager.Listener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Host host = dataSnapshot.getValue(Host.class);
-                host.id = dataSnapshot.getKey();
-                hostArrayList.add(0, host);
+            public void onDataChange() {
+                ArrayList<Host> hosts = new ArrayList<>();
+                for(Map.Entry entry : DatabaseManager.getInstance().getHosts().entrySet()) {
+                    hosts.add(0, (Host) entry.getValue());
+                }
+                hostArrayList = hosts;
+                ArrayList<Event> events = new ArrayList<>();
+                for(Map.Entry entry : DatabaseManager.getInstance().getEvents().entrySet()) {
+                    events.add(0, (Event) entry.getValue());
+                }
+                eventArrayList = events;
                 notifyDataSetChanged();
             }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
         });
-        //Test
-        for (int i = 0; i < 10; i++) {
-            mStaffPickList.add(new ItemStaffPick("http://www.urwallpapers.com/download/7547/Macro/hd_wallpaper_wallpaper_download_free_grass-1024x600.jpg", "Hoang Xuan Lam"));
-//            hostArrayList.add(new ItemHallOfFame());
+        for (Map.Entry entry : DatabaseManager.getInstance().getHosts().entrySet()) {
+            hostArrayList.add(0, (Host) entry.getValue());
         }
-
+        for (Map.Entry entry : DatabaseManager.getInstance().getEvents().entrySet()) {
+            eventArrayList.add(0, (Event) entry.getValue());
+        }
     }
 
     @Override
@@ -184,7 +162,7 @@ public class StaffPickHeaderAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         public HeaderHolder(View view) {
             super(view);
             mRecyclerView = (RecyclerView) view.findViewById(R.id.horizontal_recycler_view);
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(itemView.getContext(), LinearLayoutManager.HORIZONTAL, false);
             HeaderAdapter adapter = new HeaderAdapter();
             mRecyclerView.setLayoutManager(linearLayoutManager);
             mRecyclerView.setAdapter(adapter);
@@ -193,11 +171,11 @@ public class StaffPickHeaderAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                 @Override
                 public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
                     int pos = parent.findContainingViewHolder(view).getAdapterPosition();
-                    if (pos != 0 && pos != mStaffPickList.size() -1) {
+                    if (pos != 0 && pos != eventArrayList.size() -1) {
 //                    outRect.top = Utils.dpToPx(3);
                         outRect.left = Utils.dpToPx(1);
 //                        outRect.right = Utils.dpToPx(1);
-                    } else if(pos != mStaffPickList.size() - 2) {
+                    } else if(pos != eventArrayList.size() - 2) {
 
                     }
                 }
@@ -216,13 +194,13 @@ public class StaffPickHeaderAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
         @Override
         public void onBindViewHolder(HeaderItemHolder holder, int position) {
-            Picasso.with(MainApplication.getAppContext()).load(mStaffPickList.get(position).mUrl).into(holder.imgStaffPick);
-            holder.txtDecription.setText(mStaffPickList.get(position).mDecription);
+            Picasso.with(MainApplication.getAppContext()).load(eventArrayList.get(position).image).into(holder.imgStaffPick);
+            holder.txtDecription.setText(eventArrayList.get(position).name);
         }
 
         @Override
         public int getItemCount() {
-            return mStaffPickList.size();
+            return eventArrayList.size();
         }
 
         public class HeaderItemHolder extends RecyclerView.ViewHolder {

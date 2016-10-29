@@ -56,7 +56,7 @@ public class DatabaseManager {
 
     public DatabaseManager() {
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("evens").limitToLast(5).addChildEventListener(new ChildEventListener() {
+        mDatabase.child("events").limitToLast(20).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 try {

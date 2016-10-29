@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.dontbesilent.dontbesilent.R;
 import com.dontbesilent.dontbesilent.data.Campaign;
 import com.dontbesilent.dontbesilent.data.DatabaseManager;
+import com.dontbesilent.dontbesilent.data.Event;
+import com.dontbesilent.dontbesilent.data.Host;
 import com.dontbesilent.dontbesilent.util.Utils;
 import com.squareup.picasso.Picasso;
 
@@ -61,7 +63,7 @@ public class CampaignAdapter extends RecyclerView.Adapter<CampaignAdapter.Holder
         try {
             Campaign campaign = mCampaigns.get(position);
             holder.mTvCampaignName.setText(campaign.name);
-            holder.mTvCampaignDescription.setText(campaign.description);
+            holder.mTvCampaignDescription.setText(campaign.desception);
             holder.mTvFollowersNum.setText(String.valueOf(campaign.numFollower));
             holder.mTvDonationPercent.setText(String.valueOf((int) (campaign.incomeMoney * 100 / campaign.goalMoney)) + "%");
             holder.mProgress.setProgress((int)(campaign.incomeMoney * 100 / campaign.goalMoney));
@@ -69,10 +71,14 @@ public class CampaignAdapter extends RecyclerView.Adapter<CampaignAdapter.Holder
             if (!Utils.isEmpty(campaign.image)){
                 Picasso.with(holder.itemView.getContext()).load(campaign.image).into(holder.mImvBanner);
             }
-            String s = DatabaseManager.getInstance().getEvents().get(campaign.eventId).name;
-            holder.mTvEventName.setText(s);
-            s = DatabaseManager.getInstance().getHosts().get(campaign.hostId).name;
-            holder.mTvOperationName.setText(s);
+            Event event = DatabaseManager.getInstance().getEvents().get(campaign.eventId);
+            if(event != null) {
+                holder.mTvEventName.setText(event.name);
+            }
+            Host host = DatabaseManager.getInstance().getHosts().get(campaign.hostId);
+            if(host != null) {
+                holder.mTvOperationName.setText(host.name);
+            }
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
