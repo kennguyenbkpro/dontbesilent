@@ -9,6 +9,7 @@ public class Campaign {
     public String name;
     public String hostId;
     public String eventId;
+    public String image;
     public String desception;
     public String startTime;
     public String endTime;

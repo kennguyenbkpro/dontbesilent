@@ -14,6 +14,9 @@ public class Event {
     public String image;
     public List<String> campaigns;
 
+    public Event() {
+    }
+
     public Event(String name, String address, Double goalMoney, Double incomeMoney) {
         this.name = name;
         this.address = address;

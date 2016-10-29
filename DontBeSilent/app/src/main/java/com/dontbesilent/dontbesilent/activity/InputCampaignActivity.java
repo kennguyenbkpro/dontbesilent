@@ -83,6 +83,104 @@ public class InputCampaignActivity extends AppCompatActivity {
 //                writeNewHost("-KVG9kmxguSYtzV8BLgO", "nhahaotam@gmail.com", "Nhà hảo tâm", true, "283 Đường Trường Chinh, Phường 14, Tân Bình, Tp.Hồ Chí Minh");
 //                writeNewHost("-KVG9knBDBqhbBcnBFSK", "hoichuthapdo@gmail.com", "Hội chữ thập đỏ", true, "127B Đường Văn Cao, Phường Phú Thọ Hòa, Tân Phú, Tp.Hồ Chí Minh");
 
+//                mDatabase.child("campaigns").limitToLast(10).addChildEventListener(new ChildEventListener() {
+//                    @Override
+//                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+//                        if(dataSnapshot.getKey().equals("-KVGT2yq42pStRiQ39Jj")) {
+//                            Campaign campaign = dataSnapshot.getValue(Campaign.class);
+//                            campaign.image = "https://hieuminh.files.wordpress.com/2013/11/lc5a9-mie1bb81n-trung.jpg";
+//                            mDatabase.child("campaigns").child("-KVGT2yq42pStRiQ39Jj").setValue(campaign);
+//                        } else if(dataSnapshot.getKey().equals("-KVGT2yQFCT2ZyuWGQFT")) {
+//                            Campaign campaign = dataSnapshot.getValue(Campaign.class);
+//                            campaign.image = "http://cms.kienthuc.net.vn/uploaded/quocquan/2015_09_17/hom-nay-ngap-lut-de-doa-cac-tinh-mien-trung.jpg";
+//                            mDatabase.child("campaigns").child("-KVGT2yQFCT2ZyuWGQFT").setValue(campaign);
+//                        } else if(dataSnapshot.getKey().equals("-KVGT2y0kXRwub9_lxn1")) {
+//                            Campaign campaign = dataSnapshot.getValue(Campaign.class);
+//                            campaign.image = "http://files.tamsugiadinh.vn/News/1970/01/con-bi-gian-nao-benh-tim-ngang.jpg";
+//                            mDatabase.child("campaigns").child("-KVGT2y0kXRwub9_lxn1").setValue(campaign);
+//                        } else if(dataSnapshot.getKey().equals("-KVGT2xb_ZBHvQahIwOd")) {
+//                            Campaign campaign = dataSnapshot.getValue(Campaign.class);
+//                            campaign.image = "http://www.nhantu.com/images/post/2014/11/08/12//DSC_1421-709ed.JPG";
+//                            mDatabase.child("campaigns").child("-KVGT2xb_ZBHvQahIwOd").setValue(campaign);
+//                        } else if(dataSnapshot.getKey().equals("-KVGT2x8pWNsoyybxlCI")) {
+//                            Campaign campaign = dataSnapshot.getValue(Campaign.class);
+//                            campaign.image = "http://ngoctrongtim.org/wp-content/uploads/2015/12/4a41f9a6-ba1d-4366-801e-be8a8d5b0008-580x321.jpg";
+//                            mDatabase.child("campaigns").child("-KVGT2x8pWNsoyybxlCI").setValue(campaign);
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(DatabaseError databaseError) {
+//
+//                    }
+//                });
+
+//                mDatabase.child("hosts").limitToLast(10).addChildEventListener(new ChildEventListener() {
+//                    @Override
+//                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+//                        if(dataSnapshot.getKey().equals("-KVG9km7EGeirW-Aelgd")) {
+//                            Host host = dataSnapshot.getValue(Host.class);
+//                            host.avatar = "http://dongphucviet.com/upload/images/Logo-mua-he-xanh.jpg";
+//                            host.cover = "https://i.ytimg.com/vi/uTYyR-VXPEM/hqdefault.jpg";
+//                            mDatabase.child("hosts").child("-KVG9km7EGeirW-Aelgd").setValue(host);
+//                        } else if(dataSnapshot.getKey().equals("-KVG9kmNfBKctQY-2KLZ")) {
+//                            Host host = dataSnapshot.getValue(Host.class);
+//                            host.avatar = "http://www.nguoiviettre.org.vn/uploads/News/pic/small_nvn_1363749099.jpg";
+//                            host.cover = "http://tinhdoannghean.vn/images/news/anh%20dep%20tinh%20nguyen.jpg";
+//                            mDatabase.child("hosts").child("-KVG9kmNfBKctQY-2KLZ").setValue(host);
+//                        } else if(dataSnapshot.getKey().equals("-KVG9kmf7e5XBO-HAYvJ")) {
+//                            Host host = dataSnapshot.getValue(Host.class);
+//                            host.avatar = "https://yt3.ggpht.com/-3pYgFpNdwlM/AAAAAAAAAAI/AAAAAAAAAAA/EuabJ8BDkms/s88-c-k-no-mo-rj-c0xffffff/photo.jpg";
+//                            host.cover = "http://fodacon.com.vn/uploads/albums/images/2014_05/7.jpg";
+//                            mDatabase.child("hosts").child("-KVG9kmf7e5XBO-HAYvJ").setValue(host);
+//                        } else if(dataSnapshot.getKey().equals("-KVG9kmxguSYtzV8BLgO")) {
+//                            Host host = dataSnapshot.getValue(Host.class);
+//                            host.avatar = "http://nhanaiclub.com/uploads/news/thumb/logonho_38.jpg";
+//                            host.cover = "http://www.benhviennhi.org.vn//upload/files/Thien%20Phuoc/tu%20thien.Jpeg";
+//                            mDatabase.child("hosts").child("-KVG9kmxguSYtzV8BLgO").setValue(host);
+//                        } else if(dataSnapshot.getKey().equals("-KVG9knBDBqhbBcnBFSK")) {
+//                            Host host = dataSnapshot.getValue(Host.class);
+//                            host.avatar = "http://chuthapdotphcm.org.vn/fckeditor/editor/filemanager/connectors/aspx/userfiles/image/HIEN%20MAU/image001.jpg";
+//                            host.cover = "http://hoichuthapdohanoi.vn/uploads/news/2016_09/logo-dai-hoi.jpg";
+//                            mDatabase.child("hosts").child("-KVG9knBDBqhbBcnBFSK").setValue(host);
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(DatabaseError databaseError) {
+//
+//                    }
+//                });
             }
         });
     }

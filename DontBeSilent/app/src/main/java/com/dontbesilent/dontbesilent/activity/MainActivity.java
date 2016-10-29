@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.dontbesilent.dontbesilent.R;
+import com.dontbesilent.dontbesilent.data.DatabaseManager;
 import com.dontbesilent.dontbesilent.data.Host;
 import com.dontbesilent.dontbesilent.fragment.FragmentCampaign;
 import com.dontbesilent.dontbesilent.fragment.FragmentInfo;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        DatabaseManager.getInstance();
 
         mBottomNavigationView = (BottomNavigationView)
                 findViewById(R.id.bottom_navigation_main);
