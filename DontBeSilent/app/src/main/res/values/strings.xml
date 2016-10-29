@@ -14,6 +14,10 @@
 
     <string name="title_activity">Activity</string>
     <string name="title_comment">Comment</string>
+    <string name="title_hosted_by">Hosted by:</string>
+    <string name="title_followers">Followers</string>
+    <string name="title_donation">Donation</string>
+    <string name="title_valid_time">Valid time</string>
 
     <string name="google_maps_key">AIzaSyCxTIoBlYhhJ6VqBeQlxM9vENjgPU90ZkE</string>
 

@@ -9,4 +9,8 @@
 
     <string name="title_activity">Hoạt động</string>
     <string name="title_comment">Comment</string>
+    <string name="title_hosted_by">Tổ chức bởi:</string>
+    <string name="title_followers">Theo dõi</string>
+    <string name="title_donation">Quyên góp</string>
+    <string name="title_valid_time">Thời gian</string>
 </resources>
