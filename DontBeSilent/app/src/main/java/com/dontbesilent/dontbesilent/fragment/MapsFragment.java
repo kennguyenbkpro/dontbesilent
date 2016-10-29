@@ -1,10 +1,7 @@
 package com.dontbesilent.dontbesilent.fragment;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
@@ -15,6 +12,7 @@ import android.widget.Toast;
 
 import com.dontbesilent.dontbesilent.CacheVariant;
 import com.dontbesilent.dontbesilent.R;
+import com.dontbesilent.dontbesilent.data.Campaign;
 import com.dontbesilent.dontbesilent.item.ItemCampaign;
 import com.dontbesilent.dontbesilent.utils.GPSTracker;
 import com.google.android.gms.maps.CameraUpdate;
@@ -35,7 +33,7 @@ import java.util.HashMap;
 public class MapsFragment extends Fragment {
     public static FragmentManager fragmentManager;
     private View v = null;
-    private HashMap<Marker, ItemCampaign> eventMarkerMap;
+    private HashMap<Marker, Campaign> eventMarkerMap;
     private Location location;
     private CameraPosition cameraPosition;
 
@@ -133,7 +131,7 @@ public class MapsFragment extends Fragment {
 
     }
 
-    public Marker placeMarker(ItemCampaign eventInfo) {
+    public Marker placeMarker(Campaign eventInfo) {
         if (mMap != null) {
             BitmapDescriptor bmpIcon = null;
             {
@@ -142,8 +140,8 @@ public class MapsFragment extends Fragment {
 
             Marker m = mMap.addMarker(new MarkerOptions()
                             .position(new LatLng(Double.parseDouble(eventInfo.mLatitude), Double.parseDouble(eventInfo.mLongtitude)))
-                            .title(eventInfo.mTitleDecription)
-                            .snippet(eventInfo.mDescription)
+                            .title(eventInfo.name)
+                            .snippet(eventInfo.description)
                             .icon(bmpIcon)
             );
             return m;
@@ -160,12 +158,12 @@ public class MapsFragment extends Fragment {
     private void setUpMap() {
 //        updateLocation();
 
-        eventMarkerMap = new HashMap<Marker, ItemCampaign>();
+        eventMarkerMap = new HashMap<Marker, Campaign>();
 
         //add market into map CacheVariant.ARRAY_ITEM_CAMPAIGN
         if (CacheVariant.ARRAY_ITEM_CAMPAIGN != null && CacheVariant.ARRAY_ITEM_CAMPAIGN.size() > 0) {
             for (int i = 0; i < CacheVariant.ARRAY_ITEM_CAMPAIGN.size(); i++) {
-                ItemCampaign item = CacheVariant.ARRAY_ITEM_CAMPAIGN.get(i);
+                Campaign item = CacheVariant.ARRAY_ITEM_CAMPAIGN.get(i);
                 eventMarkerMap.put(placeMarker(item), item);
             }
         }

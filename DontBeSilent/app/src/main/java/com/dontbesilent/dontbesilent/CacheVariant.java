@@ -2,6 +2,7 @@ package com.dontbesilent.dontbesilent;
 
 import android.location.Location;
 
+import com.dontbesilent.dontbesilent.data.Campaign;
 import com.dontbesilent.dontbesilent.item.ItemCampaign;
 import com.google.android.gms.maps.model.LatLng;
 
@@ -30,7 +31,7 @@ public class CacheVariant {
 
     public static  ArrayList<ItemCampaign> ITEM_CAMPAIGN_SAVE;
 
-    public static ArrayList<ItemCampaign> ARRAY_ITEM_CAMPAIGN;
+    public static ArrayList<Campaign> ARRAY_ITEM_CAMPAIGN;
 
-    public static ItemCampaign ITEM_INFO_CAMPAIGN_DETAIL = null;
+    public static Campaign ITEM_INFO_CAMPAIGN_DETAIL = null;
 }

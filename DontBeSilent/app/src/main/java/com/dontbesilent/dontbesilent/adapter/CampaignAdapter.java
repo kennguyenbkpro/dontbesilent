@@ -11,12 +11,13 @@ import android.widget.TextView;
 
 import com.dontbesilent.dontbesilent.R;
 import com.dontbesilent.dontbesilent.data.Campaign;
-import com.dontbesilent.dontbesilent.data.DatabaseManager;
-import com.dontbesilent.dontbesilent.util.Utils;
-import com.squareup.picasso.Picasso;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 /**
  * Created by CuTi on 10/27/2016.
@@ -26,22 +27,38 @@ public class CampaignAdapter extends RecyclerView.Adapter<CampaignAdapter.Holder
 
     private ArrayList<Campaign> mCampaigns = new ArrayList<>();
     private OnCampaignSelectedListener onCampaignSelectedListener;
+    private DatabaseReference mDatabase;
 
     public CampaignAdapter() {
-        DatabaseManager.getInstance().addListener(new DatabaseManager.Listener() {
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child("campaigns").limitToLast(20).addChildEventListener(new ChildEventListener() {
             @Override
-            public void onDataChange() {
-                ArrayList<Campaign> campaigns = new ArrayList<>();
-                for(Map.Entry entry : DatabaseManager.getInstance().getCampaigns().entrySet()) {
-                    campaigns.add(0, (Campaign) entry.getValue());
-                }
-                mCampaigns = campaigns;
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Campaign campaign = dataSnapshot.getValue(Campaign.class);
+                mCampaigns.add(0, campaign);
                 notifyDataSetChanged();
             }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
         });
-        for (Map.Entry entry : DatabaseManager.getInstance().getCampaigns().entrySet()) {
-            mCampaigns.add(0, (Campaign) entry.getValue());
-        }
     }
 
     @Override
@@ -61,18 +78,11 @@ public class CampaignAdapter extends RecyclerView.Adapter<CampaignAdapter.Holder
         try {
             Campaign campaign = mCampaigns.get(position);
             holder.mTvCampaignName.setText(campaign.name);
-            holder.mTvCampaignDescription.setText(campaign.desception);
+            holder.mTvCampaignDescription.setText(campaign.description);
             holder.mTvFollowersNum.setText(String.valueOf(campaign.numFollower));
-            holder.mTvDonationPercent.setText(String.valueOf((int) (campaign.incomeMoney * 100 / campaign.goalMoney)) + "%");
+            holder.mTvDonationPercent.setText(String.valueOf((int) (campaign.incomeMoney * 100 / campaign.goalMoney)));
             holder.mProgress.setProgress((int)(campaign.incomeMoney * 100 / campaign.goalMoney));
             holder.mTvValidTimeValue.setText(campaign.startTime);
-            if (!Utils.isEmpty(campaign.image)){
-                Picasso.with(holder.itemView.getContext()).load(campaign.image).into(holder.mImvBanner);
-            }
-            String s = DatabaseManager.getInstance().getEvents().get(campaign.eventId).name;
-            holder.mTvEventName.setText(s);
-            s = DatabaseManager.getInstance().getHosts().get(campaign.hostId).name;
-            holder.mTvOperationName.setText(s);
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -113,7 +123,7 @@ public class CampaignAdapter extends RecyclerView.Adapter<CampaignAdapter.Holder
             mTvFollowersNum = (TextView) itemView.findViewById(R.id.tv_followers_num);
             mTvDonationPercent = (TextView) itemView.findViewById(R.id.tv_donation_percent);
             mTvValidTimeValue = (TextView) itemView.findViewById(R.id.tv_valid_time_value);
-            mTvEventName = (TextView) itemView.findViewById(R.id.item_campaign_tv_event_name);
+//            mTvEventName = (TextView) itemView.findViewById(R.id.item_campaign_tv_event_name);
 //            mTvDuration = (TextView) itemView.findViewById(R.id.item_campaign_tv_duration);
 //            mTvLocation = (TextView) itemView.findViewById(R.id.item_campaign_tv_location);
             mTvType = (TextView) itemView.findViewById(R.id.item_campaign_tv_type);
