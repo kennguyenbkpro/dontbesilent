@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    android:background="@color/cardview_dark_background"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp">
+
+    <ImageView
+        android:id="@+id/item_campaign_imv_image"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:scaleType="centerCrop"
+        android:background="#30000000"/>
+
+    <TextView
+        android:id="@+id/item_campaign_tv_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="3dp"
+        android:gravity="left|center_vertical"
+        style="@style/TextViewName"
+        android:text="Campaign name goes here"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="150dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="20dp">
+
+            <TextView
+                android:id="@+id/item_campaign_tv_event_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left|center_vertical"
+                style="@style/TextViewCampaignItemInfo"
+                android:text="Event name goes here"/>
+
+            <TextView
+                android:id="@+id/item_campaign_tv_operation_name"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left|center_vertical"
+                style="@style/TextViewCampaignItemInfo"
+                android:text="Operation name goes here"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="20dp">
+
+            <TextView
+                android:id="@+id/item_campaign_tv_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left|center_vertical"
+                style="@style/TextViewCampaignItemInfo"
+                android:text="182 Le Dai Hanh, F3"/>
+
+            <TextView
+                android:id="@+id/item_campaign_tv_duration"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left|center_vertical"
+                style="@style/TextViewCampaignItemInfo"
+                android:text="Oct,29 - Oct,30"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
