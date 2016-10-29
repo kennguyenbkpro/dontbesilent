@@ -29,8 +29,7 @@ public class CampaignDonationAdapter extends RecyclerView.Adapter<CampaignDonati
 
     @Override
     public int getItemCount() {
-//        return mDonations.size();
-        return 20;
+        return mDonations.size();
     }
 
     @Override
@@ -43,7 +42,7 @@ public class CampaignDonationAdapter extends RecyclerView.Adapter<CampaignDonati
     public void onBindViewHolder(final Holder holder, int position) {
         if(position >= getItemCount()) return;
         try {
-
+            holder.fillData(mDonations.get(position));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -57,6 +56,14 @@ public class CampaignDonationAdapter extends RecyclerView.Adapter<CampaignDonati
             super(itemView);
             mImv = (ImageView) itemView.findViewById(R.id.donation_item_imv);
             mTvContent = (TextView) itemView.findViewById(R.id.donation_item_tv_content);
+        }
+
+        public void fillData(Donation donation) {
+            try {
+                mTvContent.setText(donation.description);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }

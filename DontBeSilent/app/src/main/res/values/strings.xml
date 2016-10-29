@@ -3,7 +3,7 @@
 
     <string name="google_maps_key">AIzaSyCxTIoBlYhhJ6VqBeQlxM9vENjgPU90ZkE</string>
 
-    <string name="bottom_nav_title_campaign">Campain</string>
+    <string name="bottom_nav_title_campaign">Campaign</string>
     <string name="bottom_nav_title_event">Event</string>
     <string name="bottom_nav_title_my_info">My Info</string>
 

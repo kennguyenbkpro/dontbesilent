@@ -17,20 +17,19 @@ import java.util.ArrayList;
  */
 public class CampaignActivityAdapter extends RecyclerView.Adapter<CampaignActivityAdapter.Holder> {
 
-    private ArrayList<CampaignActivity> mCampaigns = new ArrayList<>();
+    private ArrayList<CampaignActivity> mActivities = new ArrayList<>();
 
     public void setData(ArrayList<CampaignActivity> campaignActivities) {
-        mCampaigns.clear();
+        mActivities.clear();
         if (campaignActivities != null) {
-            mCampaigns.addAll(campaignActivities);
+            mActivities.addAll(campaignActivities);
         }
         notifyDataSetChanged();
     }
 
     @Override
     public int getItemCount() {
-//        return mCampaigns.size();
-        return 20;
+        return mActivities.size();
     }
 
     @Override
@@ -43,7 +42,7 @@ public class CampaignActivityAdapter extends RecyclerView.Adapter<CampaignActivi
     public void onBindViewHolder(final Holder holder, int position) {
         if(position >= getItemCount()) return;
         try {
-
+            holder.fillData(mActivities.get(position));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -57,6 +56,14 @@ public class CampaignActivityAdapter extends RecyclerView.Adapter<CampaignActivi
             super(itemView);
             mImvAvatar = (ImageView) itemView.findViewById(R.id.activity_item_imv_avatar);
             mTvContent = (TextView) itemView.findViewById(R.id.activity_item_tv_content);
+        }
+
+        public void fillData(CampaignActivity activity) {
+            try {
+                mTvContent.setText(activity.content);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }

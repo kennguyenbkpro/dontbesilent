@@ -11,6 +11,7 @@ import android.view.View;
 import com.dontbesilent.dontbesilent.R;
 import com.dontbesilent.dontbesilent.adapter.CampaignCommentAdapter;
 import com.dontbesilent.dontbesilent.adapter.CampaignDonationAdapter;
+import com.dontbesilent.dontbesilent.util.DummyDataUtils;
 import com.dontbesilent.dontbesilent.util.Utils;
 
 public class CampaignDonationListActivity extends AppCompatActivity {
@@ -40,5 +41,10 @@ public class CampaignDonationListActivity extends AppCompatActivity {
 //                }
 //            }
 //        });
+
+        if (DummyDataUtils.mDonations == null || DummyDataUtils.mDonations.isEmpty()) {
+            DummyDataUtils.getDummyDonation();
+        }
+        mCampaignDonationAdapter.setData(DummyDataUtils.mDonations);
     }
 }

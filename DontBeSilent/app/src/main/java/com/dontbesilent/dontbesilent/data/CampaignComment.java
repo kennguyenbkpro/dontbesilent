@@ -5,4 +5,6 @@ package com.dontbesilent.dontbesilent.data;
  */
 
 public class CampaignComment {
+    public String username;
+    public String comment;
 }

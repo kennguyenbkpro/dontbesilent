@@ -24,6 +24,10 @@ import com.dontbesilent.dontbesilent.R;
 import com.dontbesilent.dontbesilent.adapter.CampaignActivityAdapter;
 import com.dontbesilent.dontbesilent.adapter.CampaignCommentAdapter;
 import com.dontbesilent.dontbesilent.adapter.CampaignDonationAdapter;
+import com.dontbesilent.dontbesilent.data.CampaignActivity;
+import com.dontbesilent.dontbesilent.data.CampaignComment;
+import com.dontbesilent.dontbesilent.data.Donation;
+import com.dontbesilent.dontbesilent.util.DummyDataUtils;
 import com.dontbesilent.dontbesilent.util.Utils;
 
 import java.util.ArrayList;
@@ -38,6 +42,16 @@ public class CampaignDetailsActivity extends AppCompatActivity {
     private LinearLayout mLayoutDonation;
     private LinearLayout mLayoutActivities;
     private LinearLayout mLayoutComments;
+
+    private View mBtnSeeMoreDonation;
+    private View mBtnSeeMoreActivities;
+    private View mBtnSeeMoreComments;
+
+    private ArrayList<Donation> mDonations = new ArrayList<>();
+    private ArrayList<CampaignActivity> mActivities = new ArrayList<>();
+    private ArrayList<CampaignComment> mComments = new ArrayList<>();
+
+    private static final int MAX_SAMPLE_DONATION_ACT_COMMENT_DISPLAYED = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,19 +90,24 @@ public class CampaignDetailsActivity extends AppCompatActivity {
         mLayoutComments = (LinearLayout) findViewById(R.id.campaign_detail_comments);
 
         mLayoutDonationActivityComment = findViewById(R.id.campaign_info_donation_activity_comment);
-        findViewById(R.id.campaign_detail_btn_see_more_donation).setOnClickListener(new View.OnClickListener() {
+        mBtnSeeMoreDonation = findViewById(R.id.campaign_detail_btn_see_more_donation);
+        mBtnSeeMoreDonation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 seeMoreDonation();
             }
         });
-        findViewById(R.id.campaign_detail_btn_see_more_activities).setOnClickListener(new View.OnClickListener() {
+
+        mBtnSeeMoreActivities = findViewById(R.id.campaign_detail_btn_see_more_activities);
+        mBtnSeeMoreActivities.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 seeMoreActivities();
             }
         });
-        findViewById(R.id.campaign_detail_btn_see_more_comments).setOnClickListener(new View.OnClickListener() {
+
+        mBtnSeeMoreComments = findViewById(R.id.campaign_detail_btn_see_more_comments);
+        mBtnSeeMoreComments.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 seeMoreComments();
@@ -133,41 +152,62 @@ public class CampaignDetailsActivity extends AppCompatActivity {
             mLayoutDonationActivityComment.setVisibility(View.VISIBLE);
         }
 
+        mDonations = DummyDataUtils.getDummyDonation();
+        mActivities = DummyDataUtils.getDummyActivities();
+        mComments = DummyDataUtils.getDummyComments();
         populateDonation();
         populateActivities();
         populateComments();
     }
 
     private void populateDonation() {
-        int sample = 3;
+        int sample = Math.min(MAX_SAMPLE_DONATION_ACT_COMMENT_DISPLAYED, mDonations.size());
         LayoutInflater layoutInflater = LayoutInflater.from(this);
         for (int i = 0; i < sample; i++) {
-            View itemView = layoutInflater.inflate(R.layout.rv_item_donation, mLayoutDonation, true);
+            View itemView = layoutInflater.inflate(R.layout.rv_item_donation, mLayoutDonation, false);
             CampaignDonationAdapter.Holder holder = new CampaignDonationAdapter.Holder(itemView);
 //            itemView.setAlpha(0.0f);
-            // TODO Fill data
+            holder.fillData(mDonations.get(i));
+            mLayoutDonation.addView(itemView);
+        }
+        if (sample < MAX_SAMPLE_DONATION_ACT_COMMENT_DISPLAYED) {
+            mBtnSeeMoreDonation.setVisibility(View.GONE);
+        } else {
+            mBtnSeeMoreDonation.setVisibility(View.VISIBLE);
         }
     }
 
     private void populateActivities() {
-        int sample = 3;
+        int sample = Math.min(MAX_SAMPLE_DONATION_ACT_COMMENT_DISPLAYED, mActivities.size());
         LayoutInflater layoutInflater = LayoutInflater.from(this);
         for (int i = 0; i < sample; i++) {
-            View itemView = layoutInflater.inflate(R.layout.rv_item_campaign_activity, mLayoutActivities, true);
+            View itemView = layoutInflater.inflate(R.layout.rv_item_campaign_activity, mLayoutActivities, false);
             CampaignActivityAdapter.Holder holder = new CampaignActivityAdapter.Holder(itemView);
 //            itemView.setAlpha(0.0f);
-            // TODO Fill data
+            holder.fillData(mActivities.get(i));
+            mLayoutActivities.addView(itemView);
+        }
+        if (sample < MAX_SAMPLE_DONATION_ACT_COMMENT_DISPLAYED) {
+            mBtnSeeMoreActivities.setVisibility(View.GONE);
+        } else {
+            mBtnSeeMoreActivities.setVisibility(View.VISIBLE);
         }
     }
 
     private void populateComments() {
-        int sample = 3;
+        int sample = Math.min(MAX_SAMPLE_DONATION_ACT_COMMENT_DISPLAYED, mComments.size());
         LayoutInflater layoutInflater = LayoutInflater.from(this);
         for (int i = 0; i < sample; i++) {
-            View itemView = layoutInflater.inflate(R.layout.rv_item_campaign_comment, mLayoutComments, true);
+            View itemView = layoutInflater.inflate(R.layout.rv_item_campaign_comment, mLayoutComments, false);
             CampaignCommentAdapter.Holder holder = new CampaignCommentAdapter.Holder(itemView);
 //            itemView.setAlpha(0.0f);
-            // TODO Fill data
+            holder.fillData(mComments.get(i));
+            mLayoutComments.addView(itemView);
+        }
+        if (sample < MAX_SAMPLE_DONATION_ACT_COMMENT_DISPLAYED) {
+            mBtnSeeMoreComments.setVisibility(View.GONE);
+        } else {
+            mBtnSeeMoreComments.setVisibility(View.VISIBLE);
         }
     }
 

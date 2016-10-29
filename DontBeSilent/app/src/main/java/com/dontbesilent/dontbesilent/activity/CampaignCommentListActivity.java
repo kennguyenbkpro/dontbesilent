@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.dontbesilent.dontbesilent.R;
 import com.dontbesilent.dontbesilent.adapter.CampaignCommentAdapter;
+import com.dontbesilent.dontbesilent.util.DummyDataUtils;
 import com.dontbesilent.dontbesilent.util.Utils;
 
 public class CampaignCommentListActivity extends AppCompatActivity {
@@ -39,5 +40,10 @@ public class CampaignCommentListActivity extends AppCompatActivity {
 //                }
 //            }
 //        });
+
+        if (DummyDataUtils.mComments == null || DummyDataUtils.mComments.isEmpty()) {
+            DummyDataUtils.getDummyComments();
+        }
+        mCampaignCommentAdapter.setData(DummyDataUtils.mComments);
     }
 }

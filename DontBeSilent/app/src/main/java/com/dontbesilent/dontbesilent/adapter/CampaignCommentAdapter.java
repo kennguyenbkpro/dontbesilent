@@ -29,8 +29,7 @@ public class CampaignCommentAdapter extends RecyclerView.Adapter<CampaignComment
 
     @Override
     public int getItemCount() {
-//        return mCampaignComments.size();
-        return 20;
+        return mCampaignComments.size();
     }
 
     @Override
@@ -43,7 +42,7 @@ public class CampaignCommentAdapter extends RecyclerView.Adapter<CampaignComment
     public void onBindViewHolder(final Holder holder, int position) {
         if(position >= getItemCount()) return;
         try {
-
+            holder.fillData(mCampaignComments.get(position));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -61,6 +60,15 @@ public class CampaignCommentAdapter extends RecyclerView.Adapter<CampaignComment
             mTvName = (TextView) itemView.findViewById(R.id.comment_item_tv_name);
             mTvUserType = (TextView) itemView.findViewById(R.id.comment_item_tv_user_type);
             mTvContent = (TextView) itemView.findViewById(R.id.comment_item_tv_content);
+        }
+
+        public void fillData(CampaignComment comment) {
+            try {
+                mTvName.setText(comment.username);
+                mTvContent.setText(comment.comment);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }

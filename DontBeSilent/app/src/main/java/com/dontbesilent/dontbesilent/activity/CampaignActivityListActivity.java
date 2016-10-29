@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.dontbesilent.dontbesilent.R;
 import com.dontbesilent.dontbesilent.adapter.CampaignActivityAdapter;
+import com.dontbesilent.dontbesilent.util.DummyDataUtils;
 import com.dontbesilent.dontbesilent.util.Utils;
 
 public class CampaignActivityListActivity extends AppCompatActivity {
@@ -31,6 +32,7 @@ public class CampaignActivityListActivity extends AppCompatActivity {
         mCampaignActivityAdapter = new CampaignActivityAdapter();
         mRvActivities.setLayoutManager(mRvActivitiesLayoutManager);
         mRvActivities.setAdapter(mCampaignActivityAdapter);
+
 //        mRvActivities.addItemDecoration(new RecyclerView.ItemDecoration() {
 //            @Override
 //            public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
@@ -39,5 +41,10 @@ public class CampaignActivityListActivity extends AppCompatActivity {
 //                }
 //            }
 //        });
+
+        if (DummyDataUtils.mActivities == null || DummyDataUtils.mActivities.isEmpty()) {
+            DummyDataUtils.getDummyActivities();
+        }
+        mCampaignActivityAdapter.setData(DummyDataUtils.mActivities);
     }
 }
