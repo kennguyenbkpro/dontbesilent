@@ -13,10 +13,18 @@
     <string name="title_followers">Theo dõi</string>
     <string name="title_donation">Quyên góp</string>
     <string name="title_valid_time">Thời gian</string>
+    <string name="title_info">Thông tin</string>
+
+    <string name="hall_of_fame">Nhà tổ chức tiêu biểu</string>
 
     <string name="btn_see_more">Xem thêm</string>
 
     <string name="user_type_donator">Nhà hảo tâm</string>
     <string name="user_type_host">Nhà tổ chức</string>
     <string name="user_type_admin">Quản trị viên</string>
+
+    <string name="user_info_option">Tùy chọn</string>
+    <string name="user_info_user_detail">Thông tin người dùng</string>
+    <string name="user_info_user_campaign">Chiến dịch đang theo dõi</string>
+    <string name="user_info_bookmark">Bookmark</string>
 </resources>

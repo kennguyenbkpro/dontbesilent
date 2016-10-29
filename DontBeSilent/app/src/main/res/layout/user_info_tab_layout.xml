@@ -103,7 +103,7 @@
                     android:layout_marginRight="7dp"
                     />
                 <Button
-                    android:text="Option"
+                    android:text="@string/user_info_option"
                     android:textSize="16sp"
                     android:textAllCaps="false"
                     android:gravity="left|center_vertical"
@@ -120,7 +120,7 @@
                     android:layout_marginRight="7dp"
                     />
                 <Button
-                    android:text="User Detail"
+                    android:text="@string/user_info_user_detail"
                     android:textSize="16sp"
                     android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp"
                     android:textAllCaps="false"
@@ -140,7 +140,7 @@
                 <Button
                     android:id="@+id/user_campaign"
                     android:textSize="16sp"
-                    android:text="User's Campaigns"
+                    android:text="@string/user_info_user_campaign"
                     android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp"
                     android:textAllCaps="false"
                     android:gravity="left|center_vertical"
@@ -158,7 +158,7 @@
                     />
                 <Button
                     android:id="@+id/bookmark"
-                    android:text="Bookmarks"
+                    android:text="@string/user_info_bookmark"
                     android:textSize="16sp"
                     android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp"
                     android:textAllCaps="false"
