@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">DontBeSilent</string>
 
-    <string name="bottom_nav_title_1">Title 1</string>
-    <string name="bottom_nav_title_2">Title 2</string>
-    <string name="bottom_nav_title_3">Title 3</string>
+    <string name="bottom_nav_title_campaign">Campain</string>
+    <string name="bottom_nav_title_event">Event</string>
+    <string name="bottom_nav_title_my_info">My Info</string>
 </resources>

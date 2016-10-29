@@ -3,18 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <!--TODO Add android:icon -->
     <item
-        android:id="@+id/bottom_nav_main_action_1"
+        android:id="@+id/bottom_nav_main_campaign"
         android:enabled="true"
-        android:title="@string/bottom_nav_title_1"
+        android:title="@string/bottom_nav_title_campaign"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/bottom_nav_main_action_2"
+        android:id="@+id/bottom_nav_main_event"
         android:enabled="true"
-        android:title="@string/bottom_nav_title_2"
+        android:title="@string/bottom_nav_title_event"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/bottom_nav_main_action_3"
+        android:id="@+id/bottom_nav_main_info"
         android:enabled="true"
-        android:title="@string/bottom_nav_title_3"
+        android:title="@string/bottom_nav_title_my_info"
+        android:icon="@drawable/ic_info_white_24dp"
         app:showAsAction="ifRoom" />
 </menu>

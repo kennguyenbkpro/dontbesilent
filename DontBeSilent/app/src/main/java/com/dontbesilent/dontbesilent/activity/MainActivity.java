@@ -10,16 +10,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.dontbesilent.dontbesilent.R;
-import com.dontbesilent.dontbesilent.fragment.Fragment1;
-import com.dontbesilent.dontbesilent.fragment.Fragment2;
-import com.dontbesilent.dontbesilent.fragment.Fragment3;
+import com.dontbesilent.dontbesilent.fragment.FragmentCampaign;
+import com.dontbesilent.dontbesilent.fragment.FragmentEvent;
+import com.dontbesilent.dontbesilent.fragment.FragmentInfo;
 
 public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView mBottomNavigationView;
-    private Fragment1 mFragment1;
-    private Fragment2 mFragment2;
-    private Fragment3 mFragment3;
+    private FragmentCampaign mFragmentCampaign;
+    private FragmentEvent mFragmentEvent;
+    private FragmentInfo mFragmentInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,14 +36,14 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()) {
-                            case R.id.bottom_nav_main_action_1:
-                                showFragment1();
+                            case R.id.bottom_nav_main_campaign:
+                                showFragmentCampaign();
                                 break;
-                            case R.id.bottom_nav_main_action_2:
-                                showFragment2();
+                            case R.id.bottom_nav_main_event:
+                                showFragmentEvent();
                                 break;
-                            case R.id.bottom_nav_main_action_3:
-                                showFragment3();
+                            case R.id.bottom_nav_main_info:
+                                showFragmentInfo();
                                 break;
                         }
                         return false;
@@ -51,29 +51,29 @@ public class MainActivity extends AppCompatActivity {
                 });
 
         if (savedInstanceState == null) {
-            showFragment1();
+            showFragmentCampaign();
         }
     }
 
-    private void showFragment1() {
-        if (mFragment1 == null) {
-            mFragment1 = Fragment1.getInstance();
+    private void showFragmentCampaign() {
+        if (mFragmentCampaign == null) {
+            mFragmentCampaign = FragmentCampaign.getInstance();
         }
-        showFragment(mFragment1);
+        showFragment(mFragmentCampaign);
     }
 
-    private void showFragment2() {
-        if (mFragment2 == null) {
-            mFragment2 = Fragment2.getInstance();
+    private void showFragmentEvent() {
+        if (mFragmentEvent == null) {
+            mFragmentEvent = FragmentEvent.getInstance();
         }
-        showFragment(mFragment2);
+        showFragment(mFragmentEvent);
     }
 
-    private void showFragment3() {
-        if (mFragment3 == null) {
-            mFragment3 = Fragment3.getInstance();
+    private void showFragmentInfo() {
+        if (mFragmentInfo == null) {
+            mFragmentInfo = FragmentInfo.getInstance();
         }
-        showFragment(mFragment3);
+        showFragment(mFragmentInfo);
     }
 
     private void showFragment(Fragment fragment) {

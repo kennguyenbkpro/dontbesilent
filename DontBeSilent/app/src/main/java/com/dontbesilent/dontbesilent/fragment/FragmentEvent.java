@@ -12,10 +12,10 @@ import com.dontbesilent.dontbesilent.R;
  * Created by CuTi on 10/27/2016.
  */
 
-public class Fragment1 extends BaseFragment {
-    public static Fragment1 getInstance() {
+public class FragmentEvent extends BaseFragment {
+    public static FragmentEvent getInstance() {
         Bundle bundle = new Bundle();
-        Fragment1 fragment = new Fragment1();
+        FragmentEvent fragment = new FragmentEvent();
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -28,7 +28,7 @@ public class Fragment1 extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View contentView = inflater.inflate(R.layout.fragment_1, container, false);
+        View contentView = inflater.inflate(R.layout.fragment_event, container, false);
         return contentView;
     }
 }
