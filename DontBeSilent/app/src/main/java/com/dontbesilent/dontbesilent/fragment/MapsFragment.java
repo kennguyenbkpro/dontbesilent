@@ -4,6 +4,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import com.dontbesilent.dontbesilent.CacheVariant;
 import com.dontbesilent.dontbesilent.R;
+import com.dontbesilent.dontbesilent.activity.CampaignMapDetails;
 import com.dontbesilent.dontbesilent.data.Campaign;
 import com.dontbesilent.dontbesilent.item.ItemCampaign;
 import com.dontbesilent.dontbesilent.utils.GPSTracker;
@@ -28,6 +30,8 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.HashMap;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 
 public class MapsFragment extends Fragment {
@@ -37,10 +41,31 @@ public class MapsFragment extends Fragment {
     private Location location;
     private CameraPosition cameraPosition;
 
+    private CampaignMapDetails.CampaignMapClickListener mListener;
+
+    public void setListener(CampaignMapDetails.CampaignMapClickListener listener) {
+        this.mListener = listener;
+    }
+
     public static MapsFragment getInstance() {
         MapsFragment mapsFragment = new MapsFragment();
         Bundle bundle = new Bundle();
         mapsFragment.setArguments(bundle);
+
+        //fake location
+        if (CacheVariant.ARRAY_ITEM_CAMPAIGN != null && CacheVariant.ARRAY_ITEM_CAMPAIGN.size() > 0) {
+            for (int i = 0; i < CacheVariant.ARRAY_ITEM_CAMPAIGN.size(); i++) {
+                Campaign item = CacheVariant.ARRAY_ITEM_CAMPAIGN.get(i);
+                if(TextUtils.isEmpty(item.mLatitude) || TextUtils.isEmpty(item.mLongtitude) ) {
+                    double lat = ThreadLocalRandom.current().nextDouble(12.87, 13.5);
+                    double lot = ThreadLocalRandom.current().nextDouble(107.7, 108.5);
+
+                    item.mLatitude = String.valueOf(lat);
+                    item.mLongtitude = String.valueOf(lot);
+                }
+            }
+        }
+
         return mapsFragment;
     }
 
@@ -103,8 +128,8 @@ public class MapsFragment extends Fragment {
                 @Override
                 public void onMapReady(GoogleMap googleMap) {
                     mMap = googleMap;
-                    if (CacheVariant.LATLNG_END != null)
-                        directions(CacheVariant.LATLNG_END);
+//                    if (CacheVariant.LATLNG_END != null)
+//                        directions(CacheVariant.LATLNG_END);
 
                     mMap.setMyLocationEnabled(true);
                     updateLocation(isDirection);
@@ -113,7 +138,7 @@ public class MapsFragment extends Fragment {
                         setUpMap();
                     }
 
-                    mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
+//                    mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
                 }
             });
 
@@ -164,6 +189,13 @@ public class MapsFragment extends Fragment {
         if (CacheVariant.ARRAY_ITEM_CAMPAIGN != null && CacheVariant.ARRAY_ITEM_CAMPAIGN.size() > 0) {
             for (int i = 0; i < CacheVariant.ARRAY_ITEM_CAMPAIGN.size(); i++) {
                 Campaign item = CacheVariant.ARRAY_ITEM_CAMPAIGN.get(i);
+                if(TextUtils.isEmpty(item.mLatitude) || TextUtils.isEmpty(item.mLongtitude) ) {
+                    double lat = ThreadLocalRandom.current().nextDouble(12.87, 13.5);
+                    double lot = ThreadLocalRandom.current().nextDouble(107.7, 108.5);
+
+                    item.mLatitude = String.valueOf(lat);
+                    item.mLongtitude = String.valueOf(lot);
+                }
                 eventMarkerMap.put(placeMarker(item), item);
             }
         }
@@ -174,6 +206,12 @@ public class MapsFragment extends Fragment {
                 CacheVariant.ITEM_INFO_CAMPAIGN_DETAIL = eventMarkerMap.get(marker);
                 Log.e("@LamHX", "Click Marker");
                 //TODO
+
+                if(mListener != null) {
+                    Campaign campaign = eventMarkerMap.get(marker);
+                    int index = CacheVariant.ARRAY_ITEM_CAMPAIGN.indexOf(campaign);
+                    mListener.onClick(index);
+                }
             }
         });
     }
@@ -207,13 +245,25 @@ public class MapsFragment extends Fragment {
     }
 
     private void updateLocation(boolean isDirection) {
-        GPSTracker objGPSTracker = new GPSTracker(getActivity());
-        objGPSTracker.stopUsingGPS();
-        CacheVariant.LOCATION_CURRENT = objGPSTracker.getLocation();
-        if (CacheVariant.LOCATION_CURRENT != null) {
-            LatLng objLatLng = new LatLng(objGPSTracker.getLatitude(), objGPSTracker.getLongitude());
+//        GPSTracker objGPSTracker = new GPSTracker(getActivity());
+//        objGPSTracker.stopUsingGPS();
+//        CacheVariant.LOCATION_CURRENT = objGPSTracker.getLocation();
+//        if (CacheVariant.LOCATION_CURRENT != null) {
+//            LatLng objLatLng = new LatLng(objGPSTracker.getLatitude(), objGPSTracker.getLongitude());
+//            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(objLatLng, 20));
+//            mMap.animateCamera(CameraUpdateFactory.zoomTo(14), 2000, null);
+//        }
+        LatLng objLatLng = null;
+        try {
+            objLatLng = new LatLng(Double.parseDouble(CacheVariant.ARRAY_ITEM_CAMPAIGN.get(0).mLatitude),
+                    Double.parseDouble(CacheVariant.ARRAY_ITEM_CAMPAIGN.get(0).mLongtitude));
+        } catch (Throwable e) {
+            e.printStackTrace();
+            objLatLng = null;
+        }
+        if (objLatLng != null) {
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(objLatLng, 20));
-            mMap.animateCamera(CameraUpdateFactory.zoomTo(14), 2000, null);
+            mMap.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
         }
     }
 
