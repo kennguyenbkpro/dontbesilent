@@ -203,9 +203,9 @@ public class MapsFragment extends Fragment {
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
-                CacheVariant.ITEM_INFO_CAMPAIGN_DETAIL = eventMarkerMap.get(marker);
-                Log.e("@LamHX", "Click Marker");
-                //TODO
+//                CacheVariant.ITEM_INFO_CAMPAIGN_DETAIL = eventMarkerMap.get(marker);
+//                Log.e("@LamHX", "Click Marker");
+//                //TODO
 
                 if(mListener != null) {
                     Campaign campaign = eventMarkerMap.get(marker);
